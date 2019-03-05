@@ -1,0 +1,17 @@
+# Members
+
+- name: yyyu200
+  role: Data Scientist / Materials Informatics
+  img: https://gss0.baidu.com/7Ls0a8Sm2Q5IlBGlnYG/sys/portraith/item/51d60c06
+  github: yyyu200
+  gplus: https://www.baidu.com/p/yyyu200
+  bio: Yyyu200 earned a Sc.D. in Computational Materials at ZJU. His current research is on first-principles and machine learning tools. 
+  url: http://yyyu200.github.io/
+  visible: false
+     
+- name: Surya R. Kalidindi
+  role: Materials Informatics
+  img: https://avatars1.githubusercontent.com/u/6601815?v=3&s=400
+  bio: Dr. Kalidindi’s research interests are broadly centered on designing material internal structure (including composition) for optimal performance in any selected application and identifying hybrid processing routes for its manufacture. To this end, he has employed a harmonious blend of experimental, theoretical, and numerical approaches in his research.
+  url: http://mined.gatech.edu/
+  visible: false
