@@ -7,7 +7,7 @@ title: Quantum Espresso的功能清单
 author: yyyu200
 tags: DFT
 subtitle: 
-category: project1
+category: Blogs
 notebookfilename: intro
 visualworkflow: true
 published: true
