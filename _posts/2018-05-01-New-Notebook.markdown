@@ -5,7 +5,7 @@ horizontal: "</section></section><section markdown=\"1\" data-background=\"https
 layout: post
 title: Quantum Espresso的功能清单
 author: yyyu200
-tags: template
+tags: DFT
 subtitle: 
 category: project1
 notebookfilename: intro
