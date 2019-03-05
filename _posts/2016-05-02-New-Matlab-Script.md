@@ -7,7 +7,7 @@ title: New Matlab Script
 author: Ahmet Cecen
 tags: matlab workflows template
 subtitle: Some Short Description of the Script
-category: project1
+category: Blogs
 visualworkflow: true
 published: false
 theme: beige
