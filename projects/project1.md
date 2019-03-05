@@ -1,6 +1,6 @@
 ---
 layout: project
-title: Project 1
+title: Blogs
 description: Description of the project.
 "header-img": "img/home-bg.jpg"
 category: Blog
