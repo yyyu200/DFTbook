@@ -15,7 +15,7 @@ theme: beige
 trans: cube
 ---
 
->把整个化学归结成一些数学方程的基本定律已经完全搞清楚了，唯一的问题是方程太复杂难于求解。需要发展近似实用的求解方法，从而达到不需要太多计算量就可以揭示复杂原子体系的主要特性。 ——Paul Dirac，1929。
+>把整个化学归结成一些数学方程的基本定律已经完全搞清楚了，唯一的问题是方程太复杂难于求解。需要发展近似实用的求解方法，从而达到不需要太多计算量就可以揭示复杂原子体系的主要特性。 ——保罗·狄拉克，1929。
 
 ## Quantum Espresso的功能清单
 ### 基态计算
@@ -36,8 +36,8 @@ trans: cube
 + Meta-Dynamics, 使用PLUMED插件.
 
 ### 电化学与特殊边界条件
-+ Effective Screening Medium (ESM) method
-+ Environment effects with the Environ plug-in
++ 有效屏蔽介质方法(ESM)；
++ 环境效应，Environ插件。
 
 ### 响应性质（密度泛函微扰理论）
 + 任意波矢处的声子频率和本征矢量;
@@ -51,17 +51,17 @@ trans: cube
 + 二维异质结构声子（参考）。
 
 ### 谱学性质
-+ K−, L1 and L2,3-edge X-ray Absorption Spectra (XSpectra package);
-+ Time-Dependent Density Functional Perturbation Theory (TurboTDDFT package);
-+ Electron energy-loss spectroscopy (TurboEELS package);
-+ Electronic excitations with Many-Body Perturbation Theory (GWL package);
-+ Electronic excitations with Many-Body Perturbation Theory, using the YAMBO package.
++ K−, L1和L2,3-带边 X射线吸收谱(XSpectra模块)；
++ 含时密度泛函微扰理论(TurboTDDFT模块)；
++ 电子能量损失谱(TurboEELS模块)；
++ 多体微扰理论计算电子激发态 (GWL模块)；
++ 多体微扰理论计算电子激发态，使用YAMBO模块。
 
 ### 量子输运
-+ Ballistic Transport ( PWCOND package);
-+ Coherent Transport from Maximally Localized Wannier Functions, using the WanT code;
-+ Maximally-localized Wannier functions and transport properties, using the WANNIER90 code.
-+ Kubo-Greenwood electrical conductivity using the KGEC code.
++ 弹道输运（PWCOND模块）；
++ 基于最局域化万尼尔函数相干输运，使用WanT模块；
++ 最局域化万尼尔函数与输运性质，使用WANNIER90；
++ Kubo-Greenwood电导率，使用KGEC。
 
 ### 软件运行平台要求
 几乎各种现有平台(真的！手机和游戏机上也能运行)：大型机(IBM SP和BlueGene, Cray XT, Altix, Nec SX)，工作站 (HP, IBM, SUN, Intel, AMD) ，个人电脑，支持操作系统包括Linux, Windows, Mac OS-X, 32位或64位Intel或AMD处理器的集群，以多种方式连接(吉比特以太网, myrinet, infiniband…). 充分利用数学软件库如Intel CPU适合的MKL，AMD CPU适合的ACML，IBM机器使用的ESSL。支持GPU的版本见下载页。
