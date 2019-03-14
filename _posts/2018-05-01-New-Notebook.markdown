@@ -25,7 +25,7 @@ trans: cube
 + 范德瓦尔斯修正: Grimme D2和D3， Tkatchenko-Scheffler， XDM (交换空穴偶极矩)， 非局域范德瓦尔斯泛函(vdw-DF)；
 + Hubbard U (DFT+U)；
 + 贝里相位极化；
-+ 非共线磁性， 自旋轨道耦合.
++ 非共线磁性， 自旋轨道耦合。
 
 ### 结构优化，分子动力学，势能面
 + 具有准牛顿BFGS预处理的GDIIS；
@@ -69,3 +69,4 @@ trans: cube
 
 
 >War does not decide who is right， only who is **left**.
+
