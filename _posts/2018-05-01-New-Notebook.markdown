@@ -20,7 +20,7 @@ trans: cube
 ## Quantum Espresso的功能清单
 ### 基态计算
 + 自洽场总能，力，应力，科恩-沈轨道；
-+ 可分模守恒赝势，超软赝势（范德堡方法），PAW赝势（投影扩展波）；
++ 可分模守恒赝势，超软赝势（范德堡方法），PAW赝势；
 + 多种交换关联泛函：从LDA到广义梯度修正（PW91，PBE，B88-P86，BLYP）到超GGA，精确交换(HF)，杂化泛函(PBE0，B3LYP，HSE)；
 + 范德瓦尔斯修正: Grimme D2和D3， Tkatchenko-Scheffler， XDM (交换空穴偶极矩)， 非局域范德瓦尔斯泛函(vdw-DF)；
 + Hubbard U (DFT+U)；
