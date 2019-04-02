@@ -1,0 +1,7 @@
+&bands
+prefix='pwscf',
+outdir='tmp'
+filband='bds.out'
+lp=.true.
+/
+

@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+"""
+@author: yyyu200@163.com
+"""
+
+import numpy as np
+
+feig=open('bd.dat')
+ymin=-20
+ymax=20
+nband=4 # this is the valence band number, for insulators only
+dline=30 # vertical line intervals
+
+l=feig.readline()
+nbnd=int(l.split(',')[0].split('=')[1])
+nks=int(l.split(',')[1].split('=')[1].split('/')[0])
+
+eig=np.zeros((nks,nbnd),dtype=float)
+for i in range(nks):
+    l=feig.readline()
+    count=0
+    for j in range(nbnd//10+1):
+        l=feig.readline()
+        for k in range(len(l.split())):
+            eig[i][count]=l.split()[k]
+            count=count+1
+            
+feig.close()
+
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
+
+p1=plt.subplot(1, 1, 1)
+
+F=plt.gcf()
+F.set_size_inches([3,5])
+lw=1.2 # line width
+
+plt.xlim([0,nks-1]) # 201 points
+plt.ylim([ymin,ymax])
+#plt.xlabel(r'$k (\AA^{-1})$',fontsize=16)
+plt.ylabel(r' E (eV) ',fontsize=16)
+
+eig_vbm=max(eig[:,nband-1])
+eig_cbm=min(eig[:,nband])
+Gap=eig_cbm-eig_vbm
+
+plt.title("Band gap="+str(Gap)[0:8]+" eV")  # for insulators only
+for i in range(nbnd):
+    line1=plt.plot( eig[:,i]-eig_vbm,color='r',linewidth=lw ) 
+
+vline=dline
+while vline<nks-1:
+    plt.axvline(x=vline, ymin=ymin, ymax=ymax,linewidth=lw,color='black')
+    vline=vline+dline
+
+plt.xticks( (0,30,60), ('X', r'${\Gamma}$', 'L') )
+
+plt.savefig('pwband.png',dpi=500)
+
