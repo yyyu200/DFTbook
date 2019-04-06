@@ -28,7 +28,7 @@ trans: cube
 + 非共线磁性， 自旋轨道耦合。
 
 ### 结构优化，分子动力学，势能面
-+ 具有准牛顿BFGS预处理的GDIIS；
++ 具有准牛顿法BFGS预处理的GDIIS；
 + 阻尼动力学；
 + Car-Parrinello分子动力学(CP模块)；
 + 玻恩-奥本海默分子动力学(PWscf模块)；
