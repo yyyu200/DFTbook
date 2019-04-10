@@ -34,7 +34,7 @@ trans: cube
 
 如果只允许转动（含空间反演、镜像），称为**点群**，3维空间中的点群有32种。
 
-如果允许转动和平移的复合操作，称为**空间群**，3维空间中的空间群有230种。
+如果允许转动和平移的复合操作，称为**空间群**，3维空间中的空间群有230种。指定了空间群的类型，我们只需要知道在空间群操作下不重复的原子位置，就可以确定晶体结构，这些不重复的位置称为Wyckoff位置，QE输入有space_group和ATOMIC_POSITIONS { crystal_sg }来专门设置。
 
 保持平移对称性的最小单元是**原胞**。
 
@@ -53,6 +53,13 @@ triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal, and cu
 其中rhombohedral有两种晶胞表示，一种是菱方，一种是六方，六方体积是菱方的三倍，在QE输入中有专门的设定。
 
 
+# QE中的结构定义
+
+结构定义有ibrav等于零和ibrav不等于零两种方式。
+
+ibrav不等于零时，这里强烈推荐只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型。
+
+设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即晶格的基矢量。
 
 # 将晶胞转换为原胞
 
