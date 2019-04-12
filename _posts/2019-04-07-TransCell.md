@@ -38,11 +38,11 @@ trans: cube
 
 保持平移对称性的最小单元是**原胞**。
 
-保持平移对称性和点群对称性的最小单元是**晶胞。
+保持平移对称性和点群对称性的最小单元是**晶胞**。
 
 按照基元+格子的概念，确定**布拉伐格子**应满足：（1）所选平行六面体必须充分反映出格子的点群与平移群，即平行六面体必须与整个格子的晶系特征一致。（2）所选择平行六面体各个棱之间夹角为直角的数目最多，不为直角者尽可能地接近直角。（3）在满足上述（1）（2）条件后，所选择的平行六面体的体积应为最小。布拉伐格子即为晶胞。3维空间的布拉伐格子有14种。
 
-在平移操作下，晶体保持不变，这种在某种操作下不变的性质称之为体系的对称性。体系的薛定谔方程，由于体系的对称性，具有变换下不变的性质，于是有量子数来标记这些变换，晶体平移对称性是一系列准连续的k值所标记的，k点所在空间称为k空间，k空间是相对晶体的原胞定义的，计算晶体的能带就是在k空间进行的，k空间也具有周期性，取0点周围的魏格纳塞茨原胞，称为第一**布里渊区**。
+在平移操作下，晶体保持不变，这种在某种操作下不变的性质称之为体系的对称性。体系的薛定谔方程，由于体系的对称性，具有变换下不变的性质，于是有量子数来标记这些变换，晶体平移对称性是一系列准连续的k值所标记的，k点所在空间称为k空间，k空间是相对晶体的原胞定义的，计算晶体的能带就是在k空间进行的，k空间也具有周期性，取原点周围的魏格纳-塞茨原胞，称为第一**布里渊区**。
 
 **晶面**是相对于晶胞定义的。
 
@@ -57,18 +57,108 @@ triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal, and cu
 
 结构定义有ibrav等于零和ibrav不等于零两种方式。
 
-ibrav不等于零时，这里强烈推荐只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型。
+ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型，但是，注意ibrav=4定义的是六方的晶胞。
 
-设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即晶格的基矢量。
+设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即晶格的基矢量，这种方法可以用来设置超胞、slab模型等。
 
+```
+ibrav      structure                   celldm(2)-celldm(6)
+                                     or: b,c,cosab,cosac,cosbc
+  0          free
+      crystal axis provided in input: see card CELL_PARAMETERS
+
+  1          cubic P (sc)
+      v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)
+
+  2          cubic F (fcc)
+      v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0)
+
+  3          cubic I (bcc)
+      v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1),  v3 = (a/2)(-1,-1,1)
+
+  4          Hexagonal and Trigonal P        celldm(3)=c/a
+      v1 = a(1,0,0),  v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)
+
+  5          Trigonal R, 3fold axis c        celldm(4)=cos(alpha)
+      The crystallographic vectors form a three-fold star around
+      the z-axis, the primitive cell is a simple rhombohedron:
+      v1 = a(tx,-ty,tz),   v2 = a(0,2ty,tz),   v3 = a(-tx,-ty,tz)
+      where c=cos(alpha) is the cosine of the angle alpha between
+      any pair of crystallographic vectors, tx, ty, tz are:
+        tx=sqrt((1-c)/2), ty=sqrt((1-c)/6), tz=sqrt((1+2c)/3)
+ -5          Trigonal R, 3fold axis <111>    celldm(4)=cos(alpha)
+      The crystallographic vectors form a three-fold star around
+      <111>. Defining a' = a/sqrt(3) :
+      v1 = a' (u,v,v),   v2 = a' (v,u,v),   v3 = a' (v,v,u)
+      where u and v are defined as
+        u = tz - 2*sqrt(2)*ty,  v = tz + sqrt(2)*ty
+      and tx, ty, tz as for case ibrav=5
+      Note: if you prefer x,y,z as axis in the cubic limit,
+            set  u = tz + 2*sqrt(2)*ty,  v = tz - sqrt(2)*ty
+            See also the note in Modules/latgen.f90
+
+  6          Tetragonal P (st)               celldm(3)=c/a
+      v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,c/a)
+
+  7          Tetragonal I (bct)              celldm(3)=c/a
+      v1=(a/2)(1,-1,c/a),  v2=(a/2)(1,1,c/a),  v3=(a/2)(-1,-1,c/a)
+
+  8          Orthorhombic P                  celldm(2)=b/a
+                                             celldm(3)=c/a
+      v1 = (a,0,0),  v2 = (0,b,0), v3 = (0,0,c)
+
+  9          Orthorhombic base-centered(bco) celldm(2)=b/a
+                                             celldm(3)=c/a
+      v1 = (a/2, b/2,0),  v2 = (-a/2,b/2,0),  v3 = (0,0,c)
+ -9          as 9, alternate description
+      v1 = (a/2,-b/2,0),  v2 = (a/2, b/2,0),  v3 = (0,0,c)
+
+ 10          Orthorhombic face-centered      celldm(2)=b/a
+                                             celldm(3)=c/a
+      v1 = (a/2,0,c/2),  v2 = (a/2,b/2,0),  v3 = (0,b/2,c/2)
+
+ 11          Orthorhombic body-centered      celldm(2)=b/a
+                                             celldm(3)=c/a
+      v1=(a/2,b/2,c/2),  v2=(-a/2,b/2,c/2),  v3=(-a/2,-b/2,c/2)
+
+ 12          Monoclinic P, unique axis c     celldm(2)=b/a
+                                             celldm(3)=c/a,
+                                             celldm(4)=cos(ab)
+      v1=(a,0,0), v2=(b*cos(gamma),b*sin(gamma),0),  v3 = (0,0,c)
+      where gamma is the angle between axis a and b.
+-12          Monoclinic P, unique axis b     celldm(2)=b/a
+                                             celldm(3)=c/a,
+                                             celldm(5)=cos(ac)
+      v1 = (a,0,0), v2 = (0,b,0), v3 = (c*cos(beta),0,c*sin(beta))
+      where beta is the angle between axis a and c
+
+ 13          Monoclinic base-centered        celldm(2)=b/a
+                                             celldm(3)=c/a,
+                                             celldm(4)=cos(ab)
+      v1 = (  a/2,         0,                -c/2),
+      v2 = (b*cos(gamma), b*sin(gamma), 0),
+      v3 = (  a/2,         0,                  c/2),
+      where gamma is the angle between axis a and b
+
+ 14          Triclinic                       celldm(2)= b/a,
+                                             celldm(3)= c/a,
+                                             celldm(4)= cos(bc),
+                                             celldm(5)= cos(ac),
+                                             celldm(6)= cos(ab)
+      v1 = (a, 0, 0),
+      v2 = (b*cos(gamma), b*sin(gamma), 0)
+      v3 = (c*cos(beta),  c*(cos(alpha)-cos(beta)cos(gamma))/sin(gamma),
+           c*sqrt( 1 + 2*cos(alpha)cos(beta)cos(gamma)
+                     - cos(alpha)^2-cos(beta)^2-cos(gamma)^2 )/sin(gamma) )
+      where alpha is the angle between axis b and c
+             beta is the angle between axis a and c
+            gamma is the angle between axis a and b
+```
 # 将晶胞转换为原胞
 
 ## 1. 变换的数学形式
 
 注释
-
-1 这句名言的另一种译文是“大书，大恶”，希腊原文则为“μέγα βιβλίον μέγα κακόν”。
-
 
 ## References
 
