@@ -177,6 +177,8 @@ ibrav      structure                   celldm(2)-celldm(6)
 
 第三，确定平板和真空的厚度，当然要考虑两个表面之间的作用，为了模拟固体的性质，厚度不能过小，真空至少需要10A到20A。
 
+下面以alpha-Al2O3的(110)面为例，用ase和VESTA建slab模型。
+
 注释
 
 ## References
