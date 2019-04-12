@@ -59,11 +59,13 @@ triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal, and cu
 
 # QE中的结构定义
 
-结构定义有ibrav等于零和ibrav不等于零两种方式。
+QE中的结构定义有ibrav等于零和ibrav不等于零两种方式，这两种方式首先确定了CELL，这里的CELL是指所要计算的周期性结构单元，但不一定是最小的。
 
-ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型，但是，注意ibrav=4定义的是六方的晶胞。
+ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型，但是，注意ibrav=4定义的是六方的晶胞而不是原胞。
 
-设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即晶格的基矢量，这种方法可以用来设置超胞、slab模型等。
+设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即CELL晶格的基矢量，这种方法可以用来设置超胞、slab模型等。
+
+在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。
 
 ```
 ibrav      structure                   celldm(2)-celldm(6)
