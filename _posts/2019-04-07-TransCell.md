@@ -161,10 +161,6 @@ ibrav      structure                   celldm(2)-celldm(6)
             gamma is the angle between axis a and b
 ```
 
-# 将晶胞转换为原胞
-
-## 1. 变换的数学形式
-
 注释
 
 ## References
