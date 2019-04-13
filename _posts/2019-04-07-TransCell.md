@@ -71,6 +71,8 @@ ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibr
 
 下面的表格列出了各种布拉伐格子的celldm设置以及对应的v1,v2,v3晶格矢量（相当于内部生成的CELL_PARAMETERS），比如，六方格子设置ibrav=4，这时生成的v1 = a(1,0,0),v2 = a(-1/2,sqrt(3)/2,0),v3 = a(0,0,c/a)，可见是满足a=b!=c, alpha=120, beta=gamma=90，这正是简单六方的晶胞。
 
+在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，这样当然是足以定义CELL。QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置ibrav=0，并显式地写成CELL_PARAMETER。
+
 ```
 ibrav      structure                   celldm(2)-celldm(6)
                                      or: b,c,cosab,cosac,cosbc
