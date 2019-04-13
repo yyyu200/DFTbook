@@ -189,3 +189,6 @@ ibrav      structure                   celldm(2)-celldm(6)
 
 1. International Tables for Crystallography (2006). Vol. A, Chapter 5.1, pp. 78–85.
 
+2. https://en.wikipedia.org/wiki/Bravais_lattice
+
+3. http://www.quantum-espresso.org/Doc/INPUT_PW.html
