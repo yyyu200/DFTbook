@@ -67,11 +67,11 @@ ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibr
 
 设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，单位有三种选择：alat，bohr，angstrom，其中，alat是由celldm(1)或A定义，注意CELL_PARAMETERS这种方法可以用来设置超胞、slab模型等。
 
-在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择{ alat | bohr | angstrom | crystal | crystal_sg }，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标。
+在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标。
 
 下面的表格列出了各种布拉伐格子的celldm设置以及对应的v1,v2,v3晶格矢量（相当于内部生成的CELL_PARAMETERS），比如，六方格子设置ibrav=4，这时生成的v1 = a(1,0,0),v2 = a(-1/2,sqrt(3)/2,0),v3 = a(0,0,c/a)，可见是满足$a=b \neq c$, $\alpha=\beta=90^\circ, \gamma=120^\circ $，这正是简单六方的晶胞。
 
-在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，这样当然是足以定义CELL。QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置ibrav=0，celldm(1)=1/0.52917720859=1.88972613289，将alat设置成1.88972613289 Bohr=1.0 Angstrom，显式地写出以Angstrom为单位的CELL_PARAMETER {alat}。
+在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，这样当然是足以定义CELL。QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置ibrav=0，celldm(1)= 1 / 0.52917720859 = 1.88972613289 ，将alat设置成 1.88972613289 Bohr=1.0 Angstrom，显式地写出以Angstrom为单位的CELL_PARAMETER {alat}。
 
 ```
 ibrav      structure                   celldm(2)-celldm(6)
