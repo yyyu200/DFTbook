@@ -61,6 +61,12 @@ triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal, and cu
 
 # QE中的结构定义
 
+QE输入文件的总体结构如下图，与结构有关的包括CONTROL部分的```ibrav,celldm,nat,ntyp```以及```ATOMIC_POSITIONS```和```CELL_PARAMETERS```两部分。
+
+<p align="center">
+    <img src="https://yyyu200.github.io/DFTbook/img/structure_input.png" width="503" />
+</p>
+
 QE计算的结构都是在三维空间中周期性重复的，所以需要定义一个周期性的单元，一般是一个平行六面体的三个基矢量，另外需要定义周期性单元内的原子坐标。QE中的结构定义有ibrav等于零和ibrav不等于零两种方式，这两种方式首先确定了CELL，这里的CELL是指所要计算的周期性结构单元，但不一定是最小的。在QE中用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义CELL。
 
 ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型，但是，注意ibrav=4定义的是六方的晶胞而不是原胞。
