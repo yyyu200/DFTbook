@@ -108,7 +108,7 @@ QE提供多种方式完成一件任务的设计风格，对于具有各种习惯
 
 > 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
 
-## References
+# References
 
 1. International Tables for Crystallography (2006). Vol. A, Chapter 5.1, pp. 78–85.
 
