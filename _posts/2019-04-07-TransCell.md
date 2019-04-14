@@ -79,7 +79,7 @@ ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibr
 
 在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。
 
-在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，单位是Angstrom，这样唯一确定了CELL，这时的空间直角坐标系是QE内部定义的，也由下面表格给出。
+在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，单位是Angstrom，这样唯一确定了CELL，同样定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}，这时的空间直角坐标系是QE内部定义的，也由下面表格给出。注意这里A，B，C的顺序要按照表格，夹角余弦顺序也不能出错；ibrav=0时，A和celldm(1)设置一个作为alat。
 
 QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置ibrav=0，celldm(1)= 1 / 0.52917720859 = 1.88972613289 ，将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），显式地写出以Angstrom为单位的CELL_PARAMETER {alat}，对于ATOMIC_POSITIONS建议使用分数坐标，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
 
