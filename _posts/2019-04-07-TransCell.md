@@ -77,7 +77,7 @@ ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibr
 
 设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由celldm(1)或A定义，注意CELL_PARAMETERS这种方法可以用来设置超胞、slab模型等。
 
-在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标。
+在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{x}=(x{1},x{2},x{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。
 
 在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，这样当然是足以定义CELL。
 
