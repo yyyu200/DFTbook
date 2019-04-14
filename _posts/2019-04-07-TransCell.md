@@ -85,19 +85,12 @@ QE提供多种方式完成一件任务的设计风格，对于具有各种习惯
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式。
 
-```
 ibrav |     structure|                   celldm(2)-celldm(6) or: b,c,cosab,cosac,cosbc| v1,v2,v3| notes
-  0   |       free |      crystal axis provided in input| see card CELL_PARAMETERS|
-  1   |       cubic P (sc)|     v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)|
-  2   |       cubic F (fcc)
-      v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0)
-
-  3   |        cubic I (bcc)
-      v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1),  v3 = (a/2)(-1,-1,1)
-
-  4   |        Hexagonal and Trigonal P        celldm(3)=c/a
-      v1 = a(1,0,0),  v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)
-
+  0   |        free |      crystal axis provided in input| see card CELL_PARAMETERS|
+  1   |        cubic P (sc) |  |   v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)|
+  2   |        cubic F (fcc)|  |   v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0)
+  3   |        cubic I (bcc)|  |   v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1),  v3 = (a/2)(-1,-1,1)
+  4   |        Hexagonal and Trigonal P |       celldm(3)=c/a|    v1 = a(1,0,0),  v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)
   5          Trigonal R, 3fold axis c        celldm(4)=cos(alpha)
       The crystallographic vectors form a three-fold star around
       the z-axis, the primitive cell is a simple rhombohedron:
@@ -172,7 +165,6 @@ ibrav |     structure|                   celldm(2)-celldm(6) or: b,c,cosab,cosac
       where alpha is the angle between axis b and c
              beta is the angle between axis a and c
             gamma is the angle between axis a and b
-```
 
 # 非周期性系统
 
