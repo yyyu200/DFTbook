@@ -73,9 +73,9 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 这里空间直角坐标系的选取，对于```ibrav```$\neq$0是在QE程序内部进行的，对于```ibrav=0```是用户通过CELL_PARAMETERS而确定的。
 
-设置```ibrav```$\neq$0时，这里建议只用来计算材料的原胞，这时，```ibrav```的值代表布拉伐格子的类型。下面的表格列出了各种布拉伐格子的```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$晶格矢量（相当于内部生成的```CELL_PARAMETERS```），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav```$\neq$0，生成的是布拉伐格子的原胞；对于```ibrav=5```和```ibrav=-5```，是Trigonal三方（同Rhombohedral菱方）原胞的两种空间直角坐标系的取法，```ibrav=5```，六方轴沿z方向，而```ibrav=-5```，六方轴沿(111)方向；对于```ibrav=12```和```ibrav=-12```，是简单单斜原胞的两种空间直角坐标系的取法。
-
 设置```ibrav=0```，这时需要在输入文件中写入```CELL_PARAMETERS```，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由```celldm(1)```或```A```定义，注意```CELL_PARAMETERS```这种方法可以用来设置超胞、slab模型等。
+
+设置```ibrav```$\neq$0时，这里实际上是一个建立各种布拉伐格子相应原胞的方法，注意布拉伐格子中的7个简单格子本身即是原胞，而底心、面心、体心的7个布拉伐格子，存在相应的体积更小的原胞。这时通过```ibrav```的值设置布拉伐格子的类型。下面的表格列出了各种布拉伐格子的```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav```$\neq$0，生成的是布拉伐格子的原胞；对于```ibrav=5```和```ibrav=-5```，是Trigonal三方（同Rhombohedral菱方）原胞的两种空间直角坐标系的取法，```ibrav=5```，六方轴沿z方向，而```ibrav=-5```，六方轴沿(111)方向；对于```ibrav=12```和```ibrav=-12```，是简单单斜原胞的两种空间直角坐标系的取法。
 
 在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。
 
@@ -86,21 +86,16 @@ QE提供多种方式完成一件任务的设计风格，对于具有各种习惯
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式。
 
 ```
-ibrav      structure                   celldm(2)-celldm(6)
-                                     or: b,c,cosab,cosac,cosbc
-  0          free
-      crystal axis provided in input: see card CELL_PARAMETERS
-
-  1          cubic P (sc)
-      v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)
-
-  2          cubic F (fcc)
+ibrav |     structure|                   celldm(2)-celldm(6) or: b,c,cosab,cosac,cosbc| v1,v2,v3| notes
+  0   |       free |      crystal axis provided in input| see card CELL_PARAMETERS|
+  1   |       cubic P (sc)|     v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)|
+  2   |       cubic F (fcc)
       v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0)
 
-  3          cubic I (bcc)
+  3   |        cubic I (bcc)
       v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1),  v3 = (a/2)(-1,-1,1)
 
-  4          Hexagonal and Trigonal P        celldm(3)=c/a
+  4   |        Hexagonal and Trigonal P        celldm(3)=c/a
       v1 = a(1,0,0),  v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)
 
   5          Trigonal R, 3fold axis c        celldm(4)=cos(alpha)
