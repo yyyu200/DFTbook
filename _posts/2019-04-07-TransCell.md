@@ -105,9 +105,6 @@ QE提供多种方式完成一件任务的设计风格，对于具有各种习惯
 
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
-
-> 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
-
 # References
 
 1. International Tables for Crystallography (2006). Vol. A, Chapter 5.1, pp. 78–85.
@@ -115,3 +112,5 @@ QE提供多种方式完成一件任务的设计风格，对于具有各种习惯
 2. https://en.wikipedia.org/wiki/Bravais_lattice
 
 3. http://www.quantum-espresso.org/Doc/INPUT_PW.html
+
+> 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
