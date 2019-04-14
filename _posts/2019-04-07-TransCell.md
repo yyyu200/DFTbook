@@ -67,11 +67,15 @@ QE输入文件的总体结构如下图，与结构有关的包括CONTROL部分�
     <img src="https://yyyu200.github.io/DFTbook/img/structure_input.png" width="503" />
 </p>
 
-QE计算的结构都是在三维空间中周期性重复的，所以需要定义一个周期性的单元，一般是一个平行六面体的三个基矢量，另外需要定义周期性单元内的原子坐标。QE中的结构定义首先确定了CELL，这里的CELL是指所要计算的周期性结构单元。在QE中用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义CELL。CELL的定义不依赖于**空间直角坐标系**（**笛卡尔坐标系**）的选择，只需要定义三个基矢量的长度和三个夹角，但是为了计算，需要确定一个空间直角坐标系，以写出各个矢量的笛卡尔坐标，$$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{3}}=(v_{31},v_{32},v_{33})$$，这里空间直角坐标系的选取，对于ibrav$\neq$0是在QE程序内部进行的，对于ibrav=0是用户通过CELL_PARAMETERS而确定的。
+QE计算的结构都是在三维空间中周期性重复的，所以需要定义一个周期性的单元，一般是一个平行六面体的三个基矢量，另外需要定义周期性单元内的原子坐标。QE中的结构定义首先确定了CELL，这里的CELL是指所要计算的周期性结构单元。在QE中用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义CELL。CELL的定义不依赖于**空间直角坐标系**（**笛卡尔坐标系**）的选择，只需要定义三个基矢量的长度和三个夹角，但是为了计算，需要确定一个空间直角坐标系，以写出各个矢量的笛卡尔坐标，
+
+$$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{3}}=(v_{31},v_{32},v_{33})$$，
+
+这里空间直角坐标系的选取，对于ibrav$\neq$0是在QE程序内部进行的，对于ibrav=0是用户通过CELL_PARAMETERS而确定的。
 
 ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型。下面的表格列出了各种布拉伐格子的celldm设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$晶格矢量（相当于内部生成的CELL_PARAMETERS），注意celldm(2)和celldm(3)定义的是比例b/a和c/a，而不是基矢长度，celldm(4:6)是角度的余弦值；对于ibrav$\neq$0，生成的是布拉伐格子的原胞；对于ibrav=5和ibrav=-5，是Trigonal三方（同Rhombohedral菱方）原胞的两种空间直角坐标系的取法，ibrav=5，六方轴沿z方向，而ibrav=-5，六方轴沿(111)方向；对于ibrav=12和ibrav=-12，是简单单斜原胞的两种空间直角坐标系的取法。
 
-设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，单位有三种选择：alat，bohr，angstrom，其中，alat是由celldm(1)或A定义，注意CELL_PARAMETERS这种方法可以用来设置超胞、slab模型等。
+设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由celldm(1)或A定义，注意CELL_PARAMETERS这种方法可以用来设置超胞、slab模型等。
 
 在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标。
 
