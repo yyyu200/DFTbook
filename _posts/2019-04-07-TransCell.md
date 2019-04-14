@@ -67,7 +67,7 @@ QE输入文件的总体结构如下图，与结构有关的包括CONTROL部分�
     <img src="https://yyyu200.github.io/DFTbook/img/structure_input.png" width="503" />
 </p>
 
-QE计算的结构都是在三维空间中周期性重复的，所以需要定义一个周期性的单元，一般是一个平行六面体的三个基矢量，另外需要定义周期性单元内的原子坐标。QE中的结构定义有ibrav等于零和ibrav不等于零两种方式，这两种方式首先确定了CELL，这里的CELL是指所要计算的周期性结构单元，但不一定是最小的。在QE中用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义CELL。
+QE计算的结构都是在三维空间中周期性重复的，所以需要定义一个周期性的单元，一般是一个平行六面体的三个基矢量，另外需要定义周期性单元内的原子坐标。QE中的结构定义有ibrav等于零和ibrav不等于零两种方式，这两种方式首先确定了CELL，这里的CELL是指所要计算的周期性结构单元，但不一定是最小的。在QE中用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义CELL。CELL的定义不依赖于**空间直角坐标系**（**笛卡尔坐标系**）的选择，但是为了计算，需要确定一个空间直角坐标系，以写出各个矢量的笛卡尔坐标，$\vec{v_{1}}=(v_1x,v_1y,v1z),\vec{v_{2}}=(v_2x,v_2y,v2z),\vec{v_{3}}=(v_3x,v_3y,v3z)$。
 
 ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型，但是，注意ibrav=4定义的是六方的晶胞而不是原胞。
 
@@ -75,7 +75,7 @@ ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibr
 
 在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标。
 
-下面的表格列出了各种布拉伐格子的celldm设置以及对应的v1,v2,v3晶格矢量（相当于内部生成的CELL_PARAMETERS），注意celldm(2)和celldm(3)定义的是比例b/a和c/a，而不是基矢长度，celldm(4:6)是角度的余弦值；另外，六方格子设置ibrav=4，这时生成的v1 = a(1,0,0),v2 = a(-1/2,sqrt(3)/2,0),v3 = a(0,0,c/a)，可见是满足$a=b \neq c$, $\alpha=\beta=90^\circ, \gamma=120^\circ $，这正是简单六方的晶胞，不是原胞；而对于ibrav$\neq$0的其他值，生成的是布拉伐格子的原胞。
+下面的表格列出了各种布拉伐格子的celldm设置以及对应的v1,v2,v3晶格矢量（相当于内部生成的CELL_PARAMETERS），注意celldm(2)和celldm(3)定义的是比例b/a和c/a，而不是基矢长度，celldm(4:6)是角度的余弦值；另外，六方格子设置ibrav=4，这时生成的v1 = a(1,0,0),v2 = a(-1/2,sqrt(3)/2,0),v3 = a(0,0,c/a)，可见是满足$a=b \neq c$, $\alpha=\beta=90^\circ, \gamma=120^\circ $，这正是简单六方的晶胞，不是原胞；而对于ibrav$\neq$0的其他值，生成的是布拉伐格子的原胞；对于ibrav=5，坐标系的。
 
 在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，这样当然是足以定义CELL。QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置ibrav=0，celldm(1)= 1 / 0.52917720859 = 1.88972613289 ，将alat设置成 1.88972613289 Bohr=1.0 Angstrom，显式地写出以Angstrom为单位的CELL_PARAMETER {alat}。
 
