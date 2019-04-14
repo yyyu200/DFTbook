@@ -89,18 +89,31 @@ QE提供多种方式完成一件任务的设计风格，对于具有各种习惯
 |ibrav | structure | celldm(2)-celldm(6) or: b,c,cosab,cosac,cosbc| v1,v2,v3| notes|
 |:---------:|:----------:|:----------:|:---------|:----------------|
 |  0   |        free         |  |   crystal axis provided in input: see card CELL_PARAMETERS||
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  1   |        cubic P (sc) |  |   v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,1)|   |
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  2   |        cubic F (fcc)|  |   v1 = (a/2)(-1,0,1),  v2 = (a/2)(0,1,1), v3 = (a/2)(-1,1,0) | |
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  3   |        cubic I (bcc)|  |   v1 = (a/2)(1,1,1),  v2 = (a/2)(-1,1,1), v3 = (a/2)(-1,-1,1)| |
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  4   |Hexagonal and Trigonal P | celldm(3)=c/a | v1 = a(1,0,0), v2 = a(-1/2,sqrt(3)/2,0),  v3 = a(0,0,c/a)||
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  5   |Trigonal R, 3fold axis c | celldm(4)=cos($\alpha$) | v1 = a(tx,-ty,tz), v2 = a(0,2ty,tz),   v3 = a(-tx,-ty,tz)|   The crystallographic vectors form a three-fold star around the z-axis, the primitive cell is a simple rhombohedron. where c=cos($\alpha$) is the cosine of the angle $\alpha$ between any pair of crystallographic vectors, tx, ty, tz are: tx=sqrt((1-c)/2), ty=sqrt((1-c)/6), tz=sqrt((1+2c)/3)|
+|:---------:|:----------:|:----------:|:---------|:----------------|
 | -5   |       Trigonal R, 3fold axis <111>  |  celldm(4)=cos($\alpha$) |v1 = a' (u,v,v),   v2 = a' (v,u,v),   v3 = a' (v,v,u)| The crystallographic vectors form a three-fold star around<111>. Defining a' = a/sqrt(3) :      where u and v are defined as u = tz - 2*sqrt(2)*ty,  v = tz + sqrt(2)*ty       and tx, ty, tz as for case ibrav=5 Note: if you prefer x,y,z as axis in the cubic limit,  set  u = tz + 2*sqrt(2)*ty,  v = tz - sqrt(2)*ty See also the note in Modules/latgen.f90|
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  6   |       Tetragonal P (st) | celldm(3)=c/a|      v1 = a(1,0,0),  v2 = a(0,1,0),  v3 = a(0,0,c/a) ||
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  7   |       Tetragonal I (bct)| celldm(3)=c/a | v1=(a/2)(1,-1,c/a),  v2=(a/2)(1,1,c/a),  v3=(a/2)(-1,-1,c/a) ||
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  8   |       Orthorhombic P    | celldm(2)=b/a, celldm(3)=c/a| v1 = (a,0,0),  v2 = (0,b,0), v3 = (0,0,c)||
+|:---------:|:----------:|:----------:|:---------|:----------------|
 |  9   |       Orthorhombic base-centered(bco) |celldm(2)=b/a, celldm(3)=c/a| v1 = (a/2, b/2,0),  v2 = (-a/2,b/2,0),  v3 = (0,0,c)||
+|:---------:|:----------:|:----------:|:---------|:----------------|
 | -9   |       as 9, alternate description   |                              | v1 = (a/2,-b/2,0),  v2 = (a/2, b/2,0),  v3 = (0,0,c)|
+|:---------:|:----------:|:----------:|:---------|:----------------|
 | 10   |       Orthorhombic face-centered    |  celldm(2)=b/a, celldm(3)=c/a| v1 = (a/2,0,c/2),  v2 = (a/2,b/2,0),  v3 = (0,b/2,c/2)|
+|:---------:|:----------:|:----------:|:---------|:----------------|
 | 11   |       Orthorhombic body-centered    |  celldm(2)=b/a, celldm(3)=c/a| v1=(a/2,b/2,c/2),  v2=(-a/2,b/2,c/2),  v3=(-a/2,-b/2,c/2)|
 |:---------:|:----------:|:----------:|:---------|:---------|
 | 12   |       Monoclinic P, unique axis c   |  celldm(2)=b/a, celldm(3)=c/a, celldm(4)=cos(ab)| v1=(a,0,0), v2=(b*cos($\gamma$),b*sin($\gamma$),0),  v3 = (0,0,c)|  where $\gamma$ is the angle between axis a and b.
