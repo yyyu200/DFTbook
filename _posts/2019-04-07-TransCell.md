@@ -71,17 +71,17 @@ QE计算的结构都是在三维空间中周期性重复的，所以需要定义
 
 $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{3}}=(v_{31},v_{32},v_{33})$$，
 
-这里空间直角坐标系的选取，对于ibrav$\neq$0是在QE程序内部进行的，对于ibrav=0是用户通过CELL_PARAMETERS而确定的。
+这里空间直角坐标系的选取，对于```ibrav```$\neq$0是在QE程序内部进行的，对于```ibrav=0```是用户通过CELL_PARAMETERS而确定的。
 
-ibrav不等于零时，这里建议只用来计算材料的原胞，这时，ibrav的值代表布拉伐格子的类型。下面的表格列出了各种布拉伐格子的celldm设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$晶格矢量（相当于内部生成的CELL_PARAMETERS），注意celldm(1)定义了alat，单位只能是Bohr；celldm(2)和celldm(3)定义的是比例b/a和c/a，而不是基矢长度，celldm(4:6)是角度的余弦值；对于ibrav$\neq$0，生成的是布拉伐格子的原胞；对于ibrav=5和ibrav=-5，是Trigonal三方（同Rhombohedral菱方）原胞的两种空间直角坐标系的取法，ibrav=5，六方轴沿z方向，而ibrav=-5，六方轴沿(111)方向；对于ibrav=12和ibrav=-12，是简单单斜原胞的两种空间直角坐标系的取法。
+```ibrav```$\neq$0时，这里建议只用来计算材料的原胞，这时，```ibrav```的值代表布拉伐格子的类型。下面的表格列出了各种布拉伐格子的```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$晶格矢量（相当于内部生成的CELL_PARAMETERS），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav```$\neq$0，生成的是布拉伐格子的原胞；对于```ibrav=5```和```ibrav=-5```，是Trigonal三方（同Rhombohedral菱方）原胞的两种空间直角坐标系的取法，```ibrav=5```，六方轴沿z方向，而```ibrav=-5```，六方轴沿(111)方向；对于```ibrav=12```和```ibrav=-12```，是简单单斜原胞的两种空间直角坐标系的取法。
 
-设置ibrav=0，这时需要在输入文件中写入CELL_PARAMETERS，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由celldm(1)或A定义，注意CELL_PARAMETERS这种方法可以用来设置超胞、slab模型等。
+设置```ibrav=0```，这时需要在输入文件中写入```CELL_PARAMETERS```，即CELL晶格的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由```celldm(1)```或```A```定义，注意```CELL_PARAMETERS```这种方法可以用来设置超胞、slab模型等。
 
-在定义了CELL之后，用ATOMIC_POSITIONS定义CELL中原子的坐标。ATOMIC_POSITIONS的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。
+在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。
 
-在QE中还可以直接给出晶格的基矢长度和夹角A, B, C, cosAB, cosAC, cosBC，单位是Angstrom，这样唯一确定了CELL，同样定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由下面表格给出。注意这里A，B，C的顺序要按照表格，夹角余弦顺序也不能出错；ibrav=0时，A和celldm(1)设置一个作为alat。
+在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，这样唯一确定了CELL，同样定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由下面表格给出。注意这里```A,B,C```的顺序要按照表格，夹角余弦顺序也不能出错；```ibrav=0```时，```A```和```celldm(1)```设置一个作为alat。
 
-QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置ibrav=0，celldm(1)= 1 / 0.52917720859 = 1.88972613289 ，将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），显式地写出以Angstrom为单位的CELL_PARAMETER {alat}，对于ATOMIC_POSITIONS建议使用分数坐标，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
+QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置```ibrav=0```，```celldm(1)```= 1 / 0.52917720859 = 1.88972613289 ，将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），显式地写出以Angstrom为单位的```CELL_PARAMETERS {alat}```，对于```ATOMIC_POSITIONS```建议使用分数坐标，即写成```ATOMIC_POSITIONS {crystal}```，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式。
 
