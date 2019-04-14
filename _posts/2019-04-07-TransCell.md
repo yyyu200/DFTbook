@@ -99,11 +99,11 @@ ibrav |     structure|                   celldm(2)-celldm(6) or: b,c,cosab,cosac
   8   |       Orthorhombic P    |              celldm(2)=b/a, celldm(3)=c/a| v1 = (a,0,0),  v2 = (0,b,0), v3 = (0,0,c)|
   9   |       Orthorhombic base-centered(bco) |celldm(2)=b/a, celldm(3)=c/a| v1 = (a/2, b/2,0),  v2 = (-a/2,b/2,0),  v3 = (0,0,c)|
  -9   |       as 9, alternate description | |   v1 = (a/2,-b/2,0),  v2 = (a/2, b/2,0),  v3 = (0,0,c)|
- 10          Orthorhombic face-centered      celldm(2)=b/a, celldm(3)=c/a| v1 = (a/2,0,c/2),  v2 = (a/2,b/2,0),  v3 = (0,b/2,c/2)|
- 11          Orthorhombic body-centered      celldm(2)=b/a, celldm(3)=c/a| v1=(a/2,b/2,c/2),  v2=(-a/2,b/2,c/2),  v3=(-a/2,-b/2,c/2)|
- 12          Monoclinic P, unique axis c     celldm(2)=b/a, celldm(3)=c/a, celldm(4)=cos(ab),| v1=(a,0,0), v2=(b*cos(gamma),b*sin(gamma),0),  v3 = (0,0,c)|  where gamma is the angle between axis a and b.
--12          Monoclinic P, unique axis b     celldm(2)=b/a, celldm(3)=c/a, celldm(5)=cos(ac)| v1 = (a,0,0), v2 = (0,b,0), v3 = (c*cos(beta),0,c*sin(beta))| where beta is the angle between axis a and c
- 13   |       Monoclinic base-centered     |   celldm(2)=b/a
+ 10   |       Orthorhombic face-centered    |  celldm(2)=b/a, celldm(3)=c/a| v1 = (a/2,0,c/2),  v2 = (a/2,b/2,0),  v3 = (0,b/2,c/2)|
+ 11   |       Orthorhombic body-centered    |  celldm(2)=b/a, celldm(3)=c/a| v1=(a/2,b/2,c/2),  v2=(-a/2,b/2,c/2),  v3=(-a/2,-b/2,c/2)|
+ 12   |       Monoclinic P, unique axis c   |  celldm(2)=b/a, celldm(3)=c/a, celldm(4)=cos(ab),| v1=(a,0,0), v2=(b*cos(gamma),b*sin(gamma),0),  v3 = (0,0,c)|  where gamma is the angle between axis a and b.
+-12   |       Monoclinic P, unique axis b   |  celldm(2)=b/a, celldm(3)=c/a, celldm(5)=cos(ac)| v1 = (a,0,0), v2 = (0,b,0), v3 = (c*cos(beta),0,c*sin(beta))| where beta is the angle between axis a and c
+ 13   |       Monoclinic base-centered      |   celldm(2)=b/a
                                              celldm(3)=c/a,
                                              celldm(4)=cos(ab)|
       v1 = (  a/2,         0,                -c/2),
