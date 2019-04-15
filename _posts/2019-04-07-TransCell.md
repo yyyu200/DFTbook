@@ -52,7 +52,6 @@ triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal, and cu
 
 其中rhombohedral有两种晶胞表示，一种是菱方，一种是六方，六方体积是菱方的三倍，在QE输入中有专门的设定。
 
-
 # QE中的结构定义
 
 QE输入文件的总体结构如下图，与结构有关的包括CONTROL部分的```ibrav,celldm,nat,ntyp```以及```ATOMIC_POSITIONS```和```CELL_PARAMETERS```两部分。
@@ -75,9 +74,9 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，这样唯一确定了CELL，同样定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由下面表格给出。注意这里```A,B,C```的顺序要按照表格，夹角余弦顺序也不能出错；```ibrav=0```时，```A```和```celldm(1)```设置一个作为alat。
 
-QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置```ibrav=0```，```celldm(1)```= 1 / 0.52917720859 = 1.88972613289 ，将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），显式地写出以Angstrom为单位的```CELL_PARAMETERS {alat}```，对于```ATOMIC_POSITIONS```建议使用分数坐标，即写成```ATOMIC_POSITIONS {crystal}```，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
+QE提供多种方式完成一件任务的设计风格，对于具有各种习惯的用户提供了得心应手的工具，但是对于初学者难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置```ibrav=0```，```celldm(1)```= 1 / 0.52917720859 = 1.88972613289 ，于是将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），同时显式地写出以Angstrom为单位的```CELL_PARAMETERS {alat}```，这种设置对后续处理电荷文件也提供了方便。对于```ATOMIC_POSITIONS```建议使用分数坐标，即写成```ATOMIC_POSITIONS {crystal}```，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
 
-最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式。
+最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。
 
 <p align="center">
     <img src="https://yyyu200.github.io/DFTbook/img/ibrav.png" width="830" />
