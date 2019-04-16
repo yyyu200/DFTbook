@@ -106,6 +106,7 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
 注释
+
 <span id = "zhu1">1</span> trigonal三方晶系有两种布拉伐格子，一种是ibrav=5，菱方（rhombohedral）布拉伐格子，另一种是ibrav=4，六方（hexgonal）布拉伐格子，晶体属于菱方还是六方要看具体的空间群，在hexgonal和trigonal晶系中，7个空间群（$R3, R\overline{3}, R32, R3m, R3c, R\overline{3}m, R\overline{3}c$）具有菱方布拉伐格子的原胞，其余的45个空间群具有六方布拉伐格子的原胞。这里的菱方和六方是指晶体的格点系统lattice system，而非晶系，格点系统是按照布拉伐格子分类的，晶系是按照晶体点群分类的。
 
 # References
