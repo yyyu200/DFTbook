@@ -54,7 +54,7 @@ triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal, and cu
 
 # QE中的结构定义
 
-QE输入文件的总体结构如下图，与结构有关的包括```CONTROL```部分的```ibrav,celldm,nat,ntyp```以及```ATOMIC_POSITIONS```和```CELL_PARAMETERS```共三个部分。
+QE输入文件的总体结构如下图，QE的输入文件满足Fortran语言的Namelist语法，与结构有关的包括```CONTROL```部分的```ibrav,celldm,nat,ntyp```以及```ATOMIC_POSITIONS```和```CELL_PARAMETERS```共三个部分。
 
 <p align="center">
     <img src="https://yyyu200.github.io/DFTbook/img/structure_input.png" width="503" />
