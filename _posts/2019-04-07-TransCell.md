@@ -70,6 +70,12 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 如果知道了材料的布拉伐格子，可以设置```ibrav```$\neq$0，这时通过```ibrav```的值设置14种布拉伐格子，建立相应的原胞。[表1](#tab1)列出了各种布拉伐格子的```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav=5,-5,9,-9,12,-12```分别是三方、底心正交、简单单斜原胞的两种空间直角坐标系的取法；```ibrav```$\neq$0也可以用来设置超胞等结构，但是超胞推荐```ibrav=0```的方法。[注1](#note1)[注2](#note2)
 
+<span id = "tab1"><center><b>表1</b> 14种布拉伐格子的设置及对应的单元基矢量</center></span>
+
+<p align="center">
+    <img src="https://yyyu200.github.io/DFTbook/img/ibrav.png" width="830" />
+</p>
+
 在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。
 
 在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，这样唯一确定了CELL，同样定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由下面表格给出。注意这里```A,B,C```的顺序要按照表格，夹角余弦顺序也不能出错；```ibrav=0```时，```A```和```celldm(1)```设置一个作为alat。
@@ -77,12 +83,6 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里对于初学者推荐一种通用的方法定义CELL，即设置```ibrav=0```，```celldm(1)```= 1 / 0.52917720859 = 1.88972613289 ，于是将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），同时显式地写出以Angstrom为单位的```CELL_PARAMETERS {alat}```，这种设置对后续处理电荷文件也提供了方便。对于```ATOMIC_POSITIONS```建议使用分数坐标，即写成```ATOMIC_POSITIONS {crystal}```，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。
-
-<span id = "tab1"><center><b>表1</b> 14种布拉伐格子的设置及对应的单元基矢量</center></span>
-
-<p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/ibrav.png" width="830" />
-</p>
 
 # 非周期性系统
 
