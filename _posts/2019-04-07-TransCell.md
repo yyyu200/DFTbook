@@ -92,7 +92,7 @@ $\vec{X}=($\begin{matrix}
 x_{1} \\
 x_{2} \\
 x_{3}
-\end{matrix}$)
+\end{matrix})$
 
 # 晶胞和原胞的相互转换
 
