@@ -127,7 +127,7 @@ x^\prime_{1} \\ x^\prime_{2} \\ x^\prime_{3}
 \end{pmatrix} \quad+\vec{q}
 $
 
-以体心立方W、Pt3O4，面心立方NaCl，底心$\alpha-$FeSe为例，用[TransCell](https://github.com/yyyu200/SlabMaker)变换，并用VESTA验证（待续）。
+以体心立方W、Pt3O4，面心立方NaCl，底心$\alpha-$FeSe为例，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证（待续）。
 
 # 分数坐标和直角坐标的相互转换
 
