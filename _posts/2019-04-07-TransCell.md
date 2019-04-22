@@ -121,9 +121,13 @@ P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
 
 分数坐标的变换公式为：
 $\quad
-\begin{pmatrix} x^\prime_{1} \\ x^\prime_{2} \\ x^\prime_{3}
+\begin{pmatrix} x^\prime_{1} \\ 
+x^\prime_{2} \\ 
+x^\prime_{3}
 \end{pmatrix} \quad=\mathbf{Q}\quad \begin{pmatrix} 
-x^\prime_{1} \\ x^\prime_{2} \\ x^\prime_{3} 
+x^\prime_{1} \\ 
+x^\prime_{2} \\ 
+x^\prime_{3} 
 \end{pmatrix} \quad+\vec{q}
 $
 
