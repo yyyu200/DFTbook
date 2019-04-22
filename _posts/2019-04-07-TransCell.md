@@ -111,7 +111,9 @@ P_{12}\vec{a}+P_{22}\vec{b}+P_{32}\vec{c},
 P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
 ) $$。
 
-知道了矩阵$\mathbf{P}$和逆矩阵$\mathbf{Q}=\mathbf{P}^{-1}$，就可以进行CELL之间的变换，常见的晶胞转换为原胞的变换矩阵由表2给出，反之交换$\mathbf{P}$和$\mathbf{Q}$得到。
+知道了矩阵$\mathbf{P}$和逆矩阵$\mathbf{Q}=\mathbf{P}^{-1}$，就可以进行CELL之间的变换，常见的晶胞转换为原胞的变换矩阵由[表2](#tab2)给出，反之交换$\mathbf{P}$和$\mathbf{Q}$得到。
+
+<span id = "tab2"><center><b>表2</b> 常见单元变换矩阵</center></span>
 
 <p align="center">
     <img src="https://yyyu200.github.io/DFTbook/img/trans_cell.png" width="830" />
@@ -134,7 +136,7 @@ x_{3}
 \end{pmatrix} \quad+\vec{q}
 $$
 
-以体心立方W、$Pt_{3}O_{4}$，面心立方NaCl，底心正交$\alpha-$FeSe为例，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证（待续）。
+以体心立方W、$Pt_{3}O_{4}$，面心立方NaCl，底心正交$\alpha$-FeSe为例，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证（待续）。
 
 # 分数坐标和直角坐标的相互转换
 
