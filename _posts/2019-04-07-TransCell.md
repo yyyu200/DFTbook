@@ -120,17 +120,19 @@ P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
 周期性单元CELL的变换，还可以包含平移，平移$\vec{p}$用变换前的基矢定义为：$\vec{p}=p_{1}\vec{a}+p_{2}\vec{b}+p_{3}\vec{c}$。平移的逆变换$\vec{q}=q_{1}\vec{a'}+q_{2}\vec{b'}+q_{3}\vec{c'}$，有$\vec{q}=-\mathbf{P}^{-1}\vec{p}$。
 
 分数坐标的变换公式为：
-$\quad
+$$\quad
 \begin{pmatrix} 
 x^\prime_{1} \\ 
 x^\prime_{2} \\ 
 x^\prime_{3}
-\end{pmatrix} \quad=\mathbf{Q}\quad \begin{pmatrix} 
+\end{pmatrix} \quad=\mathbf{Q}
+\quad 
+\begin{pmatrix} 
 x_{1} \\ 
 x_{2} \\ 
 x_{3} 
 \end{pmatrix} \quad+\vec{q}
-$
+$$
 
 以体心立方W、Pt3O4，面心立方NaCl，底心$\alpha-$FeSe为例，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证（待续）。
 
