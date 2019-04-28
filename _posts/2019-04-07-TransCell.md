@@ -78,7 +78,7 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
     <img src="https://yyyu200.github.io/DFTbook/img/ibrav.png" width="830" />
 </p>
 
-在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。如果选择\{ alat \| bohr \| angstrom\}，则原子坐标是空间直角坐标，由于结构的周期性，这里的空间直角坐标系的选择是任意的，但是习惯上还是与CELL的空间直角坐标系保持一致，坐标值在CELL_PARAMTERS所定义的平行六面体内部。\{crystal_sg\}是在指定了空间群之后，定义对称性不等价的原子位置，与```space_group, uniqueb, origin_choice, rhombohedral```配套使用。
+在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})^{T}=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。如果选择\{ alat \| bohr \| angstrom\}，则原子坐标是空间直角坐标，由于结构的周期性，这里的空间直角坐标系的选择是任意的，但是习惯上还是与CELL的空间直角坐标系保持一致，坐标值在CELL_PARAMTERS所定义的平行六面体内部。\{crystal_sg\}是在指定了空间群之后，定义对称性不等价的原子位置，与```space_group, uniqueb, origin_choice, rhombohedral```配套使用。
 
 QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐一种通用的方法定义CELL，即设置```ibrav=0```，```celldm(1)```= 1 / 0.52917720859 = 1.88972613289 ，于是将alat设置成 1.88972613289 Bohr=1.0 Angstrom （1 Bohr = 0.52917720859 Angstrom），同时显式地写出以Angstrom为单位的```CELL_PARAMETERS (alat)```，这种设置方便了后续处理，例如，vc-relax计算的最终结果是以ibrav=0搭配CELL_PARAMETERS (alat)的格式输出的。设置```ibrav=0```要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。对于只做原胞的计算，可以使用```ibrav```$\neq$0，这样方便找到对称性。对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
 
@@ -86,7 +86,7 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 
 # 晶胞和原胞的相互转换
 
-首先，定义一般的周期性单元CELL的变换。按照文献[1]的约定，将（分数）坐标写为列矢量，基矢量$\vec{a},\vec{b},\vec{c}$也各为列矢量。点X在基矢$O,\vec{a},\vec{b},\vec{c}$（$O$为原点）下的坐标$x_{1},x_{2},x_{3}$定义为
+首先，定义一般的周期性单元CELL的变换。按照文献[1]的约定，将（分数）坐标写为列矢量，基矢量$\vec{a},\vec{b},\vec{c}$也各为列矢量。点X在基矢$O,\vec{a},\vec{b},\vec{c}$（$O$为原点）下的坐标$(x_{1},x_{2},x_{3})^(T)$定义为
 $$\vec{X}=x_{1}\vec{a}+x_{2}\vec{b}+x_{3}\vec{c}
 =(\vec{a},\vec{b},\vec{c})\quad
 \begin{pmatrix}
@@ -95,7 +95,7 @@ x_{1} \\x_{2} \\x_{3}
 \quad$$。
 
 考虑晶格静止不动，选择不同的基矢，即选取不同的CELL，同一个点X对新的基矢$O',\vec{a'},\vec{b'},\vec{c'}$有坐标
-$$\vec{X'}=x'_{1}\vec{a'}+x'_{2}\vec{b'}+x'_{3}\vec{c'}$$。本节考虑有撇号和无撇号的基矢选择下基矢和坐标的变换关系。
+$$\vec{X'}=(x'_{1},x'_{2},x'_{3})^{T}=x'_{1}\vec{a'}+x'_{2}\vec{b'}+x'_{3}\vec{c'}$$。下面给出有撇号和无撇号的基矢选择下基矢和坐标的变换关系。
 
 周期性单元CELL的变换是一种特殊的仿射变换（数学上一般的仿射变换形成的新单元并不保证具有晶格周期性），可以分解为线性部分和平移两个部分。
 
@@ -138,9 +138,27 @@ $$，
 
 将晶胞转换为原胞，因为晶胞和原胞中的原子个数不同，坐标变换后会有重复或相差一个原胞格子，需要将重复的删去。反之，将原胞转换为晶胞，需要将原胞格子重复足够大以覆盖晶胞，重复后的原子分别变换到新的分数坐标，最后保留晶胞内部的原子（分数坐标在0到1之间）。
 
-以体心立方W、$Pt_{3}O_{4}$，面心立方NaCl，底心正交$\alpha$-FeSe为例，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证（待续）。
+以底心单斜碳的同素异形体为例[4]，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证。
 
+先下载[cif文件](https://yyyu200.github.io/DFTbook/img/A_mC16_12_4i.cif)，用VESTA打开，画出晶胞如下：
+<p align="center">
+    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-UC.png"  />
+</p>
 
+输入转换矩阵：
+<p align="center">
+    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-UC-1.png" />
+</p>
+
+得到原胞：
+<p align="center">
+    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-PC.png"  />
+</p>
+
+原胞和晶胞的比较（见[aflow](http://aflowlib.org/CrystalDatabase/A_mC16_12_4i.html)）：
+<p align="center">
+    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-U_P.png" />
+</p>
 
 # 分数坐标和直角坐标的相互转换
 
@@ -183,6 +201,8 @@ $$，
 2. https://en.wikipedia.org/wiki/Bravais_lattice
 
 3. http://www.quantum-espresso.org/Doc/INPUT_PW.html
+
+4. Q. Li et. al., Superhard Monoclinic Polymorph of Carbon, Phys. Rev. Lett. 102, 175506 (2009), doi:10.1103/PhysRevLett.102.175506.A. R. Oganov and C. W. Glass, Crystal structure prediction using em ab initio evolutionary techniques: Principles and applications, J. Chem. Phys. 124, 244704 (2006), doi:10.1063/1.2210932.
 
 > 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
 
