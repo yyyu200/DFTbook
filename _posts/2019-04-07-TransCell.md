@@ -198,7 +198,7 @@ $$\quad
  {\vec a \cdot \vec b } \over {\lvert \vec a \rvert} & 
 \sqrt {|\vec b|^{2}-({\vec{a} \cdot \vec{b}}/ {|\vec a|})^{2} }   
 & 0 \\
-0 & 0 & \lvert \vec \tilde{c} \rvert \\
+0 & 0 & | \vec{\tilde{c}}| \\
 \end{pmatrix}
 \quad
 $$
