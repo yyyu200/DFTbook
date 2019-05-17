@@ -197,6 +197,7 @@ $$\quad
 \end{pmatrix}
 \quad
 $$
+
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
 注释
