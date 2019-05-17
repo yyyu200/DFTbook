@@ -198,9 +198,9 @@ $$\quad
 \quad
 $$
 
-真空厚度记为$d_{vacuum}$，找到原子分数坐标最大和最小的两个原子，新的z方向长度为$$\vert\vec c\prime\vert=(1-x_{max3}+x_{min3})\vert\vec c\vert+d_{vacuum}$$。加入真空后，分数坐标如下变换，可以将真空置于CELL的两端：
+真空厚度记为$d_{vacuum}$，找到原子分数坐标最大和最小的两个原子，新的z方向长度为$$\vert\vec c^{\prime}\vert=(1-x_{max,3}+x_{min,3})\vert\vec c\vert+d_{vacuum}$$。加入真空后，分数坐标如下变换，可以将真空置于CELL的两端：
 
-$$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},xi^{\prime}_{i3})^T=(x_{i1},x_{i2},[d_{vacuum}/2+(x_{i3}-x_{min,3})\vert\vec c\vert]/{\vert\vec c\prime\vert})$$。
+$$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x_{i2},[d_{vacuum}/2+(x_{i3}-x_{min,3})\vert\vec c\vert]/{\vert\vec c^{\prime}\vert})$$。
 
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
