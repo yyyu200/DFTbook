@@ -188,7 +188,7 @@ $$，
 
 建好超胞之后，变换CELL原子和分数坐标的方法为：将空间直角坐标系做旋转，总可以实现x轴沿第一个基矢方向，z轴与x轴垂直且沿第三个基矢方向（原第一和第三基矢不垂直的，由于三维周期性，也可以将第三基矢投影到垂直表面方向，从而与第一基矢垂直），先将第三基矢投影到垂直表面方向：
 
-$$\vec{c}=(\vec a \times \vec b) {\vec{c}_{0} \cdot (\vec a \times \vec b)} \over {|\vec a \times \vec b|^2} $$
+$$\vec{c} = (\vec a \times \vec b)\frac {\vec{c}_{0} \cdot (\vec a \times \vec b)} {|\vec a \times \vec b|^2} $$
 
 再将CELL变换为：
 
