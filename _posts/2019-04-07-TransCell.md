@@ -198,6 +198,10 @@ $$\quad
 \quad
 $$
 
+真空厚度记为$d_{vacuum}$，找到原子分数坐标$$x_{i3}$$最大和最小的两个原子，新的z方向长度为$$|\vec c\prime|=(1-x_{max3}+x_{min3})|\vec c|+d_{vacuum}$$。加入真空后，分数坐标变换为
+
+$\vec{X\prime}=(x\prime_{i1},x\prime_{i2},x\prime_{i3})^T=(x_{i1},x_{i2},{d_{vacuum}/2+(x_{i3}-x{min,3})|\vec c|}\over{|\vec c\prime|})$。
+
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
 注释
