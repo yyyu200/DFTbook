@@ -191,7 +191,7 @@ $$\quad
 \begin{pmatrix}
 \lvert \vec a \rvert & 0 & 0 \\
  {\vec a \cdot \vec b } \over {\lvert \vec a \rvert} & 
-\sqrt {|\vec b|^{2}-({\vec a \cdot \vec b} \over|\vec a|)^{2} }   
+\sqrt {|\vec b|^{2}-({\vec{a} \cdot \vec{b}} \over {|\vec a|})^{2} }   
 & 0 \\
 0 & 0 & \lvert \vec c \rvert \\
 \end{pmatrix}
