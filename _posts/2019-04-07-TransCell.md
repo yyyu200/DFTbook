@@ -189,18 +189,13 @@ $$，
 建好超胞之后，变换CELL原子和分数坐标的方法为：
 
 这里统一选择CELL的第三个基矢方向作为垂直表面方向，一般地，将空间直角坐标系做旋转可以实现z轴沿着第三个基矢方向，这时CELL基矢量变化为：
-\quad
+$$\quad
 \begin{pmatrix}
 \lvert \vec a \rvert & 0 & 0 \\
-{\vec a \cdot \vec b} \over \lvert \vec a \rvert& np.sqrt(norm(a2)**2 - (np.dot(a1, a2) / norm(a1))**2)  & 0 \\
+{\vec a \cdot \vec b} \over \lvert \vec a \rvert& \sqrt{{\lvert \vec b \rvert}^{2} - {{\vec a \cdot \vec b} \over {\lvert \vec a \rvert}}^{2} } }  & 0 \\
 0 & 0 & \lvert \vec c \rvert\\
 \end{pmatrix}
 \quad
-$$
-norm(a1), 0, 0 
-np.dot(a1, a2) / norm(a1)
-np.sqrt(norm(a2)**2 - (np.dot(a1, a2) / norm(a1))**2), 0
-0, 0, norm(a3)
 $$
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
