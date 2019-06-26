@@ -5,7 +5,7 @@ horizontal: "</section></section><section markdown=\"1\" data-background=\"https
 layout: post
 title: 建立QE的晶体模型
 author: yyyu200
-tags: DFT
+tags: DFT 原创
 subtitle: 
 category: Blogs
 notebookfilename: intro
