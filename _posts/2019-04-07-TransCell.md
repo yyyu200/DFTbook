@@ -20,7 +20,9 @@ trans: cube
 * TOC
 {:toc}
 
-# 晶体结构
+# 建立QE的晶体模型
+
+## 晶体结构要点
 
 首先，说明以下几个概念：平移群，点群，空间群，原胞，晶胞，布拉伐格子，晶系，晶面，布里渊区。
 
@@ -52,7 +54,7 @@ trans: cube
 
 triclinic, monoclinic, orthorhombic, tetragonal, trigonal, hexagonal和cubic。
 
-# QE中的结构定义
+## QE中的结构定义
 
 QE输入文件的总体结构如下图，输入文件的前半部分满足Fortran语言的Namelist语法。与结构有关的包括```SYSTEM```部分的```ibrav,celldm,nat,ntyp```以及```ATOMIC_POSITIONS```和```CELL_PARAMETERS```共三个部分。
 
@@ -84,7 +86,7 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。
 
-# 晶胞和原胞的相互转换
+## 晶胞和原胞的相互转换
 
 首先，定义一般的周期性单元CELL的变换。按照文献[1]的约定，将（分数）坐标写为列矢量，基矢量$\vec{a},\vec{b},\vec{c}$也各为列矢量。点X在基矢$O,\vec{a},\vec{b},\vec{c}$（$O$为原点）下的坐标$(x_{1},x_{2},x_{3})^{T}$定义为
 $$\vec{X}=x_{1}\vec{a}+x_{2}\vec{b}+x_{3}\vec{c}
@@ -160,15 +162,15 @@ $$，
     <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-U_P.png" />
 </p>
 
-# 分数坐标和直角坐标的相互转换
+## 分数坐标和直角坐标的相互转换
 
 上一节的变换矩阵推导中并没有用到晶体周期性，所以可以将直角坐标看成单位正交矢量作为格子的基矢，这时CELL基矢列矢量组成的矩阵即为单位格子到CELL的变换矩阵，而逆矩阵即为倒格子基矢量组成的矩阵(或相差一个常数系数)。
 
-# 非周期性系统
+## 非周期性系统
 
 分子、团簇、纳米晶体、具有点缺陷的固体等不具有周期性，纳米线是1维周期性的，固体表面、量子阱、二维材料等是2维周期性的，QE这样的基于平面波基函数的程序，对于这些非三维周期性的材料需要采取**超胞**近似，选取足够大的周期单元，并且，需要时在CELL中的一部分空间不加入任何原子，也就是引入真空，以隔离非周期性的维度。
 
-# 平板（slab）模型的建立
+### 平板（slab）模型的建立
 
 <p align="center">
     <img src="https://kitchingroup.cheme.cmu.edu/dft-book/images/surface-construction.png" width="300" />
@@ -209,13 +211,13 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型（待续）。
 
-注释
+## 注释
 
 <span id = "note1">1.</span> 注意晶胞和原胞的区别，ibrav$\neq0$是用来设置原胞的，布拉伐格子中的7个简单格子本身也是晶体的原胞，而底心、面心、体心的7个布拉伐格子本身是晶胞，存在体积更小的原胞。
 
 <span id = "note2">2.</span> trigonal三方晶系有两种布拉伐格子，一种是ibrav=5，菱方（rhombohedral）布拉伐格子，另一种是ibrav=4，六方（hexgonal）布拉伐格子，晶体属于菱方还是六方要看具体的空间群，在hexgonal和trigonal晶系中，7个空间群（$R3, R\overline{3}, R32, R3m, R3c, R\overline{3}m, R\overline{3}c$）具有菱方布拉伐格子的原胞，其余的45个空间群具有六方布拉伐格子的原胞。这里的菱方和六方是指晶体的格点系统lattice system，而非晶系，格点系统是按照布拉伐格子分类的，晶系是按照晶体点群分类的。
 
-# References
+## References
 
 1. International Tables for Crystallography (2006). Vol. A, Chapter 5.1, pp. 78–85.
 
