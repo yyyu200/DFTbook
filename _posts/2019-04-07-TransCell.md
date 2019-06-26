@@ -15,7 +15,6 @@ theme: beige
 trans: cube
 ---
 
->建模型的第一原理是符合实际。
 
 * TOC
 {:toc}
@@ -226,6 +225,8 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 3. http://www.quantum-espresso.org/Doc/INPUT_PW.html
 
 4. Q. Li et. al., Superhard Monoclinic Polymorph of Carbon, Phys. Rev. Lett. 102, 175506 (2009), doi:10.1103/PhysRevLett.102.175506.A. R. Oganov and C. W. Glass, Crystal structure prediction using em ab initio evolutionary techniques: Principles and applications, J. Chem. Phys. 124, 244704 (2006), doi:10.1063/1.2210932.
+
+>建模型的第一原理是符合实际。
 
 > 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
 
