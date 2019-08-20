@@ -10,7 +10,7 @@ subtitle: ""
 category: Blogs
 notebookfilename: intro
 visualworkflow: true
-published: true
+published: false
 theme: beige
 trans: cube
 ---
@@ -29,7 +29,7 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 
 
-## 超(Meta)动力学， 使用PLUMED插件。
+## 超动力学， 使用PLUMED插件。
 
 ## 有效屏蔽介质方法(ESM)
 
