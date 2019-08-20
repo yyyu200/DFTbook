@@ -25,7 +25,7 @@ trans: cube
 
 QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给出了第三方功能的清单（[本站](../../../../2018/05/01/QE-List/)）。以下对各个模块用法进行介绍。
 
-## neb.x
+## neb.x模块——微动弹性带方法
 
 ## 超(Meta)动力学， 使用PLUMED插件。
 
