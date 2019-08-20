@@ -3,7 +3,7 @@ slideinit: "<section markdown=\"1\" data-background=\"../../../../../img/slideba
 vertical: "</section><section markdown=\"1\">"
 horizontal: "</section></section><section markdown=\"1\" data-background=\"../../../../../img/slidebackground.png\"><section markdown=\"1\">"
 layout: post
-title: QE第三方后处理程序小结
+title: QE模块小结
 author: yyyu200
 tags: DFT 使用心得
 subtitle: ""
@@ -19,7 +19,7 @@ trans: cube
 * TOC
 {:toc}
 
-# QE第三方后处理程序小结
+# QE模块小结
 
 材料电子结构第一性原理计算的核心模块是总能和力的计算。在得到稳定的结构、准确的总能及电荷密度、K-S波函数之后，通过这些量得到材料的物理性质（部分化学性质）往往是研究者更加关心的问题。材料的力学、热学、声学、电学（输运）、磁学、光学性质计算与实验测量的互相对应，一直是材料计算发展的指导方向。
 
