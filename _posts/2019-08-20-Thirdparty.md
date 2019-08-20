@@ -27,31 +27,33 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 ## neb.x模块——微动弹性带方法
 
+
+
 ## 超(Meta)动力学， 使用PLUMED插件。
 
-## 有效屏蔽介质方法(ESM)；
+## 有效屏蔽介质方法(ESM)
 
 ## 环境效应，Environ插件。
 
-## 三阶非简谐声子寿命，使用D3Q模块；
+## 三阶非简谐声子寿命，使用D3Q模块
 
-## EPR和NMR化学位移，使用QE-GIPAW模块；
+## EPR和NMR化学位移，使用QE-GIPAW模块
 
-## K，L1和L2，3吸收边X射线吸收谱(XSpectra模块)；
+## K，L1和L2，3吸收边X射线吸收谱(XSpectra模块)
 
-## 含时密度泛函微扰理论(TurboTDDFT模块)；
+## 含时密度泛函微扰理论(TurboTDDFT模块)
 
-## 电子能量损失谱(TurboEELS模块)；
+## 电子能量损失谱(TurboEELS模块)
 
-## 多体微扰理论计算电子激发态 (GWL模块)；
+## 多体微扰理论计算电子激发态 (GWL模块)
 
 ## 多体微扰理论计算电子激发态，使用YAMBO模块。
 
-## 弹道输运（PWCOND模块）；
+## 弹道输运（PWCOND模块）
 
-## 基于最局域化万尼尔函数相干输运，使用WanT模块；
+## 基于最局域化万尼尔函数相干输运，使用WanT模块
 
-## 最局域化万尼尔函数与输运性质，使用WANNIER90；
+## 最局域化万尼尔函数与输运性质，使用WANNIER90
 
 ## Kubo-Greenwood电导率，使用KGEC。
 
