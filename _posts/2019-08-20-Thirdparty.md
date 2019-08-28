@@ -28,7 +28,6 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 ## neb.x模块——微动弹性带方法
 
 
-
 ## 超动力学， 使用PLUMED插件。
 
 ## 有效屏蔽介质方法(ESM)
