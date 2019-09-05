@@ -10,7 +10,7 @@ subtitle: ""
 category: Blogs
 notebookfilename: intro
 visualworkflow: true
-published: false
+published: true
 theme: beige
 trans: cube
 ---
