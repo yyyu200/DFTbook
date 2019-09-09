@@ -59,4 +59,5 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 ## Kubo-Greenwood电导率，使用KGEC。
 
-
+## thermo_pw 库
+https://github.com/dalcorso/thermo_pw
