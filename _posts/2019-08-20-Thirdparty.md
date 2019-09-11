@@ -107,3 +107,37 @@ http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
 ## LOBSTER: a local-orbital basis-set suite for extracting chemical information from plane-wave calculations
 
 ## CRITIC2: Bader analysis, laplacian of density and potentials, non-covalent interaction plots and much more
+
+
+## Materials Cloud tools
+
+Quantum ESPRESSO input generator and visualizer;
+k-point path generator;
+phonon visualizer
+
+## 可视化工具
+
+Input data can be prepared using the graphical user interface PWGui, by Anton Kokalj
+
+An alternative graphical user interface (also for WIndows and Mac): BURAI by Satomichi Nishihara (Version 1.3 available here)
+
+Visualization of the results can be obtained using XCrySDen
+
+Other visualization software that can produce input data or read output data for Quantum ESPRESSO:
+
+VMD
+
+VESTA.
+
+GDIS
+
+J-ICE (on-line converter available at this link)
+
+Other QE resources found in external sites:
+
+Virtual NanoLab (VNL) graphical user interface, a free product by QuantumWise
+
+NanoHub
+
+ATAT Thermodynamic modeling of alloys (order-disorder transition, phonons, special quasirandom structures, CALPHAD models, etc.).
+
