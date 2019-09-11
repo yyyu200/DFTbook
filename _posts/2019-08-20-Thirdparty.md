@@ -59,5 +59,51 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 ## Kubo-Greenwood电导率，使用KGEC。
 
-## thermo_pw 库
+## ElaStic: Elastic Constants
+
+http://exciting-code.org/elastic
+
+## BoltzTraP: Calculation of transport properties
+
+https://www.imc.tuwien.ac.at//forschungsbereich_theoretische_chemie/forschungsgruppen/prof_dr_gkh_madsen_theoretical_materials_chemistry/boltztrap/
+
+## WEST: Electronic excitations with Many-Body Perturbation Theory
+
+http://www.west-code.org/
+
+## thermo_pw
+
 https://github.com/dalcorso/thermo_pw
+
+## phono3py
+
+https://atztogo.github.io/phono3py/
+
+## phononpy: Phonon calculation using the Frozen-Phonon approach
+http://atztogo.github.io/phonopy/
+
+## PHON: Phonon calculation using the Frozen-Phonon approach
+http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
+
+
+## Schrodinger Materials Science Suite
+
+## AiiDA: Automated Interactive Infrastructure and Database for Computational Science
+
+## BerkeleyGW: Many-Body Perturbation Theory
+
+## QMCPACK: Quantum Monte Carlo calculations
+
+## XtalOpt: Evolutionary/Genetic Algorithm
+
+## USPEX: Evolutionary/Genetic Algorithm
+
+## CALYPSO: Crystal structure prediction via Particle Swarm Optimization
+
+## AMULET: Dynamical Mean Field Theory calculations
+
+## NanoTCAD ViDES: Simulation of nanostructured devices
+
+## LOBSTER: a local-orbital basis-set suite for extracting chemical information from plane-wave calculations
+
+## CRITIC2: Bader analysis, laplacian of density and potentials, non-covalent interaction plots and much more
