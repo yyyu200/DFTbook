@@ -85,6 +85,9 @@ http://atztogo.github.io/phonopy/
 ## PHON: Phonon calculation using the Frozen-Phonon approach
 http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
 
+## ALAMODE: lattice anharmonicity and lattice thermal conductivity of solids
+
+https://alamode.readthedocs.io/en/latest/index.html
 
 ## Schrodinger Materials Science Suite
 
