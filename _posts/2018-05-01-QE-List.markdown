@@ -54,7 +54,7 @@ source: http://www.quantum-espresso.org/project/what-can-qe-do
 + 二维异质结构声子（参考）。
 
 ### 谱学性质
-+ K，L1和L2，3吸收边X射线吸收谱(XSpectra模块)；
++ K，$L_{1}$和$L_{2,3}$吸收边X射线吸收谱(XSpectra模块)；
 + 含时密度泛函微扰理论(TurboTDDFT模块)；
 + 电子能量损失谱(TurboEELS模块)；
 + 多体微扰理论计算电子激发态 (GWL模块)；
@@ -67,9 +67,6 @@ source: http://www.quantum-espresso.org/project/what-can-qe-do
 + Kubo-Greenwood电导率，使用KGEC。
 
 ### 软件运行平台要求
-几乎各种现有平台(真的！手机和游戏机上也能运行)：大型机(IBM SP和BlueGene， Cray XT， Altix， Nec SX)，工作站 (HP， IBM， SUN， Intel， AMD) ，个人电脑，支持操作系统包括Linux， Windows， Mac OS-X， 32位或64位Intel或AMD处理器的集群，以多种方式连接(吉比特以太网， myrinet， infiniband…). 充分利用数学软件库如Intel CPU适合的MKL，AMD CPU适合的ACML，IBM机器使用的ESSL。支持GPU的版本见下载页。
+几乎各种现有平台(真的！手机和游戏机上也能运行)：大型机(IBM SP和BlueGene， Cray XT， Altix， Nec SX)，工作站 (HP， IBM， SUN， Intel， AMD) ，个人电脑，支持操作系统包括Linux， Windows， Mac OS-X， 32位或64位Intel或AMD处理器的集群，以多种方式连接(吉比特以太网， myrinet， infiniband…)。充分利用数学软件库如Intel CPU适合的MKL，AMD CPU适合的ACML，IBM机器使用的ESSL。支持GPU的版本见[下载页](http://www.quantum-espresso.org/download)。
 
-
-
->War does not decide who is right， only who is **left**.
 
