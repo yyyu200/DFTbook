@@ -4,4 +4,3 @@ outdir='tmp'
 filband='bds.out'
 lp=.true.
 /
-
