@@ -108,6 +108,23 @@ http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
 
 https://alamode.readthedocs.io/en/latest/index.html
 
+
+## EPW
+
+ Please also consider citing the EPW papers:
+ 1) F. Giustino, M. L. Cohen, and S. G. Louie, Phys. Rev. B 76, 165108 (2007)
+ 2) S. Ponc&rsquo;e, E. R. Margine, C. Verdi and F. Giustino, Comput. Phys. Commun. 209, 116 (2016)
+
+ The software tree of EPW v4 is composed of
+ /bin ==> Contains the epw.x soft link to the EPW executable.
+ /examples  ==> Contains a lists of examples that are connected to the tutorials. The
+          tutorials can be found at http://epw.org.uk/Documentation/Tutorial
+ /src ==> Contains all the EPW source files.
+ /tests ==> Small tests useful for debugging and checking if the code works. Those tests are used
+          by the test farm. Do not expect physically relevant results out of it.
+
+
+
 ## Schrodinger Materials Science Suite
 
 ## AiiDA: Automated Interactive Infrastructure and Database for Computational Science
