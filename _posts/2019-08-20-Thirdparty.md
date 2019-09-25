@@ -27,17 +27,20 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 # 谱函数，强关联电子
 
-## K，L1和L2，3吸收边X射线吸收谱(XSpectra模块)
+## XSpectra
+K，L1和L2，3吸收边X射线吸收谱
 
-## 含时密度泛函微扰理论(TurboTDDFT模块)
+## TurboTDDFT, TurboEELS
+含时密度泛函微扰理论，电子能量损失谱
 
-## 电子能量损失谱(TurboEELS模块)
+## GWL
+多体微扰理论计算电子激发态
 
-## 多体微扰理论计算电子激发态 (GWL模块)
+## YAMBO
+多体微扰理论计算电子激发态
 
-## 多体微扰理论计算电子激发态，使用YAMBO模块。
-
-## BerkeleyGW: Many-Body Perturbation Theory
+## BerkeleyGW
+Many-Body Perturbation Theory
 
 https://berkeleygw.org/
 
@@ -57,7 +60,9 @@ experiments.
 
 [1] https://doi.org/10.5281/zenodo.884071
 
-## WEST: Electronic excitations with Many-Body Perturbation Theory
+## WEST
+
+Electronic excitations with Many-Body Perturbation Theory
 
 http://www.west-code.org/
 
@@ -72,13 +77,18 @@ Solution of the Bethe Salpeter Equation (BSE) (under development)
 Calculation of finite temperature effects (under development)
 
 
-## QMCPACK: Quantum Monte Carlo calculations
+## QMCPACK
 
-## AMULET: Dynamical Mean Field Theory calculations
+Quantum Monte Carlo calculations
+
+## AMULET
+
+Dynamical Mean Field Theory calculations
 
 # 声子及电声耦合、超导相关
 
-## 三阶非简谐声子寿命，使用D3Q模块
+## D3Q
+三阶非简谐声子寿命
 
 ## thermo_pw
 
@@ -88,13 +98,17 @@ https://github.com/dalcorso/thermo_pw
 
 https://atztogo.github.io/phono3py/
 
-## phononpy: Phonon calculation using the Frozen-Phonon approach
+## phononpy
+
+Phonon calculation using the Frozen-Phonon approach
 http://atztogo.github.io/phonopy/
 
-## PHON: Phonon calculation using the Frozen-Phonon approach
+## PHON
+Phonon calculation using the Frozen-Phonon approach
 http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
 
-## ALAMODE: lattice anharmonicity and lattice thermal conductivity of solids
+## ALAMODE
+lattice anharmonicity and lattice thermal conductivity of solids
 
 https://alamode.readthedocs.io/en/latest/index.html
 
@@ -108,15 +122,21 @@ Please also consider citing the EPW papers:
 
 # 输运
 
-## 弹道输运（PWCOND模块）
+## PWCOND
+弹道输运
 
-## 基于最局域化万尼尔函数相干输运，使用WanT模块
+## WanT
+基于最局域化万尼尔函数相干输运
 
-## 最局域化万尼尔函数与输运性质，使用WANNIER90
+## WANNIER90
+最局域化万尼尔函数与输运性质
 
-## Kubo-Greenwood电导率，使用KGEC。
+## KGEC
+Kubo-Greenwood电导率
 
-## BoltzTraP: Calculation of transport properties
+## BoltzTraP
+
+Calculation of transport properties
 
 https://www.imc.tuwien.ac.at//forschungsbereich_theoretische_chemie/forschungsgruppen/prof_dr_gkh_madsen_theoretical_materials_chemistry/boltztrap/
 
@@ -128,17 +148,23 @@ http://exciting-code.org/elastic
 
 # 结构搜索，高通量计算
 
-## XtalOpt: Evolutionary/Genetic Algorithm
+## XtalOpt
+Evolutionary/Genetic Algorithm
 
-## USPEX: Evolutionary/Genetic Algorithm
+## USPEX
+Evolutionary/Genetic Algorithm
 
-## CALYPSO: Crystal structure prediction via Particle Swarm Optimization
+## CALYPSO
+Crystal structure prediction via Particle Swarm Optimization
 
-## AiiDA: Automated Interactive Infrastructure and Database for Computational Science
+## AiiDA
+Automated Interactive Infrastructure and Database for Computational Science
 
 # 其他
 
-## neb.x模块——微动弹性带方法
+## neb
+
+微动弹性带方法
 
 在化学反应、固体的原子扩散中连接初末态最小能量路径（MEP）上的能量最高点称为过渡态（TS）。通常的原子运动用经典力学已经足以描述，分子动力学方法更适合原子振动，过渡态的势垒典型在0.1~1eV量级，如果使用分子动力学，则会出现“罕见现象”（rare event）的问题。同时，可以使用统计方法准确得到转变几率，称为过渡态理论[1]，在玻恩·奥本海默近似的基础上，有两条基本假设，（1）转变几率足够小，反应物符合玻尔兹曼分布。（2）存在维度为D-1的分割表面，从初态到末态的反应只经过分割表面一次，D是系统自由度。由初末状态原子坐标线性插值得到初始的试探解，通过总能梯度和力计算，得到优化反应路径的优化迭代，直至找到TS。
 
@@ -146,19 +172,26 @@ http://exciting-code.org/elastic
 
 2. H. Jónsson, G. Mills, and K.W. Jacobsen. Classical and Quantum Dynamics in Condensed Phase Simulations Pt. II, Chapter 16: Nudged elastic band method for finding minimum energy paths of transitions.
 
-## 超动力学， 使用PLUMED插件。
+## PLUMED
+超动力学
 
-## 有效屏蔽介质方法(ESM)
+## ESM
+有效屏蔽介质方法
 
-## 环境效应，Environ插件。
+## Environ
+环境效应
 
-## EPR和NMR化学位移，使用QE-GIPAW模块
+## GIPAW
+EPR和NMR化学位移
 
-## NanoTCAD ViDES: Simulation of nanostructured devices
+## NanoTCAD ViDES
+Simulation of nanostructured devices
 
-## LOBSTER: a local-orbital basis-set suite for extracting chemical information from plane-wave calculations
+## LOBSTER
+a local-orbital basis-set suite for extracting chemical information from plane-wave calculations
 
-## CRITIC2: Bader analysis, laplacian of density and potentials, non-covalent interaction plots and much more
+## CRITIC2
+Bader analysis, laplacian of density and potentials, non-covalent interaction plots and much more
 
 ## ATAT 
 
