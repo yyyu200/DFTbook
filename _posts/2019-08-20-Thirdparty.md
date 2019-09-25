@@ -55,8 +55,6 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 ## SternheimerGW 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.884071.svg)](https://doi.org/10.5281/zenodo.884071)
-
 The SternheimerGW code evaluates the quasi-particle correction to the DFT
 results in the GW approximation. The Greens function G and the screened
 Coulomb W interaction are evaluated solving Sternheimer equations (linear
@@ -68,6 +66,8 @@ k-point path. In addition to the quasi-particle corrections to the
 eigenvalues, we provide the full frequency dependent spectral function,
 which can be compared to angular-resolved photo-emission spectroscopy (ARPES)
 experiments.
+
+[1] https://doi.org/10.5281/zenodo.884071
 
 
 ## 弹道输运（PWCOND模块）
@@ -108,22 +108,13 @@ http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
 
 https://alamode.readthedocs.io/en/latest/index.html
 
-
 ## EPW
 
- Please also consider citing the EPW papers:
- 1) F. Giustino, M. L. Cohen, and S. G. Louie, Phys. Rev. B 76, 165108 (2007)
- 2) S. Ponc&rsquo;e, E. R. Margine, C. Verdi and F. Giustino, Comput. Phys. Commun. 209, 116 (2016)
+EPW is the short name for "Electron-phonon Wannier". EPW is an open-source F90/MPI code which calculates properties related to the electron-phonon interaction using Density-Functional Perturbation Theory and Maximally Localized Wannier Functions. EPW is developed and maintained by Samuel Poncé, Roxana Margine, Carla Verdi, and Feliciano Giustino.
 
- The software tree of EPW v4 is composed of
- /bin ==> Contains the epw.x soft link to the EPW executable.
- /examples  ==> Contains a lists of examples that are connected to the tutorials. The
-          tutorials can be found at http://epw.org.uk/Documentation/Tutorial
- /src ==> Contains all the EPW source files.
- /tests ==> Small tests useful for debugging and checking if the code works. Those tests are used
-          by the test farm. Do not expect physically relevant results out of it.
-
-
+Please also consider citing the EPW papers:
+1) F. Giustino, M. L. Cohen, and S. G. Louie, Phys. Rev. B 76, 165108 (2007)
+2) S. Ponc&rsquo;e, E. R. Margine, C. Verdi and F. Giustino, Comput. Phys. Commun. 209, 116 (2016)
 
 ## Schrodinger Materials Science Suite
 
