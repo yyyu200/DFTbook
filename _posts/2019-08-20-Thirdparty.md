@@ -25,27 +25,7 @@ trans: cube
 
 QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给出了功能的清单（[中文](../../../../2018/05/01/QE-List/)）。QE是一个模块化的软件包，安装目录下有很多.x程序，是来自世界多个课题组开发的第三方功能模块，以下对各个模块用法进行介绍。
 
-## neb.x模块——微动弹性带方法
-
-在化学反应、固体的原子扩散中连接初末态最小能量路径（MEP）上的能量最高点称为过渡态（TS）。通常的原子运动用经典力学已经足以描述，分子动力学方法更适合原子振动，过渡态的势垒典型在0.1~1eV量级，如果使用分子动力学，则会出现“罕见现象”（rare event）的问题。同时，可以使用统计方法准确得到转变几率，称为过渡态理论[1]，在玻恩·奥本海默近似的基础上，有两条基本假设，（1）转变几率足够小，反应物符合玻尔兹曼分布。（2）存在维度为D-1的分割表面，从初态到末态的反应只经过分割表面一次，D是系统自由度。由初末状态原子坐标线性插值得到初始的试探解，通过总能梯度和力计算，得到优化反应路径的优化迭代，直至找到TS。
-
-1. Henkelman, G. et al, Journal of Chemical Physics, 113, 9901(2000).
-
-2. H. Jónsson, G. Mills, and K.W. Jacobsen. Classical and Quantum Dynamics in Condensed Phase Simulations Pt. II, Chapter 16: Nudged elastic band method for finding minimum energy paths of transitions.
-
-## 超动力学， 使用PLUMED插件。
-
-## 有效屏蔽介质方法(ESM)
-
-## 环境效应，Environ插件。
-
-## EPR和NMR化学位移，使用QE-GIPAW模块
-
-# 声子及电声耦合、超导相关
-
-## 三阶非简谐声子寿命，使用D3Q模块
-
-# 谱函数
+# 谱函数，强关联电子
 
 ## K，L1和L2，3吸收边X射线吸收谱(XSpectra模块)
 
@@ -60,6 +40,14 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 ## BerkeleyGW: Many-Body Perturbation Theory
 
 https://berkeleygw.org/
+
+## WEST: Electronic excitations with Many-Body Perturbation Theory
+
+http://www.west-code.org/
+
+## QMCPACK: Quantum Monte Carlo calculations
+
+## AMULET: Dynamical Mean Field Theory calculations
 
 ## SternheimerGW 
 
@@ -77,26 +65,9 @@ experiments.
 
 [1] https://doi.org/10.5281/zenodo.884071
 
+# 声子及电声耦合、超导相关
 
-## 弹道输运（PWCOND模块）
-
-## 基于最局域化万尼尔函数相干输运，使用WanT模块
-
-## 最局域化万尼尔函数与输运性质，使用WANNIER90
-
-## Kubo-Greenwood电导率，使用KGEC。
-
-## ElaStic: Elastic Constants
-
-http://exciting-code.org/elastic
-
-## BoltzTraP: Calculation of transport properties
-
-https://www.imc.tuwien.ac.at//forschungsbereich_theoretische_chemie/forschungsgruppen/prof_dr_gkh_madsen_theoretical_materials_chemistry/boltztrap/
-
-## WEST: Electronic excitations with Many-Body Perturbation Theory
-
-http://www.west-code.org/
+## 三阶非简谐声子寿命，使用D3Q模块
 
 ## thermo_pw
 
@@ -124,11 +95,27 @@ Please also consider citing the EPW papers:
 1) F. Giustino, M. L. Cohen, and S. G. Louie, Phys. Rev. B 76, 165108 (2007)
 2) S. Ponc&rsquo;e, E. R. Margine, C. Verdi and F. Giustino, Comput. Phys. Commun. 209, 116 (2016)
 
-## Schrodinger Materials Science Suite
+# 输运
 
-## AiiDA: Automated Interactive Infrastructure and Database for Computational Science
+## 弹道输运（PWCOND模块）
 
-## QMCPACK: Quantum Monte Carlo calculations
+## 基于最局域化万尼尔函数相干输运，使用WanT模块
+
+## 最局域化万尼尔函数与输运性质，使用WANNIER90
+
+## Kubo-Greenwood电导率，使用KGEC。
+
+## BoltzTraP: Calculation of transport properties
+
+https://www.imc.tuwien.ac.at//forschungsbereich_theoretische_chemie/forschungsgruppen/prof_dr_gkh_madsen_theoretical_materials_chemistry/boltztrap/
+
+# 力学
+
+## ElaStic: Elastic Constants
+
+http://exciting-code.org/elastic
+
+# 结构搜索，高通量计算
 
 ## XtalOpt: Evolutionary/Genetic Algorithm
 
@@ -136,7 +123,25 @@ Please also consider citing the EPW papers:
 
 ## CALYPSO: Crystal structure prediction via Particle Swarm Optimization
 
-## AMULET: Dynamical Mean Field Theory calculations
+## AiiDA: Automated Interactive Infrastructure and Database for Computational Science
+
+# 其他
+
+## neb.x模块——微动弹性带方法
+
+在化学反应、固体的原子扩散中连接初末态最小能量路径（MEP）上的能量最高点称为过渡态（TS）。通常的原子运动用经典力学已经足以描述，分子动力学方法更适合原子振动，过渡态的势垒典型在0.1~1eV量级，如果使用分子动力学，则会出现“罕见现象”（rare event）的问题。同时，可以使用统计方法准确得到转变几率，称为过渡态理论[1]，在玻恩·奥本海默近似的基础上，有两条基本假设，（1）转变几率足够小，反应物符合玻尔兹曼分布。（2）存在维度为D-1的分割表面，从初态到末态的反应只经过分割表面一次，D是系统自由度。由初末状态原子坐标线性插值得到初始的试探解，通过总能梯度和力计算，得到优化反应路径的优化迭代，直至找到TS。
+
+1. Henkelman, G. et al, Journal of Chemical Physics, 113, 9901(2000).
+
+2. H. Jónsson, G. Mills, and K.W. Jacobsen. Classical and Quantum Dynamics in Condensed Phase Simulations Pt. II, Chapter 16: Nudged elastic band method for finding minimum energy paths of transitions.
+
+## 超动力学， 使用PLUMED插件。
+
+## 有效屏蔽介质方法(ESM)
+
+## 环境效应，Environ插件。
+
+## EPR和NMR化学位移，使用QE-GIPAW模块
 
 ## NanoTCAD ViDES: Simulation of nanostructured devices
 
@@ -145,31 +150,33 @@ Please also consider citing the EPW papers:
 ## CRITIC2: Bader analysis, laplacian of density and potentials, non-covalent interaction plots and much more
 
 
+# 可视化工具
+
 ## Materials Cloud tools
 
 Quantum ESPRESSO input generator and visualizer;
 k-point path generator;
 phonon visualizer
 
-## 可视化工具
+## PWGui
 
 Input data can be prepared using the graphical user interface PWGui, by Anton Kokalj
 
+## BURAI
+
 An alternative graphical user interface (also for WIndows and Mac): BURAI by Satomichi Nishihara (Version 1.3 available here)
+
+## Schrodinger Materials Science Suite
+
+
+
+## Other QE resources found in external sites:
 
 Visualization of the results can be obtained using XCrySDen
 
 Other visualization software that can produce input data or read output data for Quantum ESPRESSO:
 
-VMD
-
-VESTA.
-
-GDIS
-
-J-ICE (on-line converter available at this link)
-
-Other QE resources found in external sites:
+VMD, VESTA, GDIS, J-ICE (on-line converter available at this link)
 
 Virtual NanoLab (VNL) graphical user interface, a free product by QuantumWise
 
