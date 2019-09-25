@@ -41,14 +41,6 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 https://berkeleygw.org/
 
-## WEST: Electronic excitations with Many-Body Perturbation Theory
-
-http://www.west-code.org/
-
-## QMCPACK: Quantum Monte Carlo calculations
-
-## AMULET: Dynamical Mean Field Theory calculations
-
 ## SternheimerGW 
 
 The SternheimerGW code evaluates the quasi-particle correction to the DFT
@@ -64,6 +56,25 @@ which can be compared to angular-resolved photo-emission spectroscopy (ARPES)
 experiments.
 
 [1] https://doi.org/10.5281/zenodo.884071
+
+## WEST: Electronic excitations with Many-Body Perturbation Theory
+
+http://www.west-code.org/
+
+WEST is an open source software (released under GPLv3) that performs large-scale, many-body perturbation theory calculations providing electronic and optical spectroscopic characterization of complex materials.
+
+Features:
+
+GW self-energy calculation
+
+Solution of the Bethe Salpeter Equation (BSE) (under development)
+
+Calculation of finite temperature effects (under development)
+
+
+## QMCPACK: Quantum Monte Carlo calculations
+
+## AMULET: Dynamical Mean Field Theory calculations
 
 # 声子及电声耦合、超导相关
 
