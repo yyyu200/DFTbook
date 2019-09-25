@@ -53,6 +53,23 @@ QE官网（[Link](http://www.quantum-espresso.org/project/what-can-qe-do) ）给
 
 ## 多体微扰理论计算电子激发态，使用YAMBO模块。
 
+## SternheimerGW 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.884071.svg)](https://doi.org/10.5281/zenodo.884071)
+
+The SternheimerGW code evaluates the quasi-particle correction to the DFT
+results in the GW approximation. The Greens function G and the screened
+Coulomb W interaction are evaluated solving Sternheimer equations (linear
+response problem) instead of summing over the virtual, unoccupied subspace.
+
+The main target of SternheimerGW are very accurate calculations for crystals
+and surfaces. We can evaluate the full band structure along any user selected
+k-point path. In addition to the quasi-particle corrections to the
+eigenvalues, we provide the full frequency dependent spectral function,
+which can be compared to angular-resolved photo-emission spectroscopy (ARPES)
+experiments.
+
+
 ## 弹道输运（PWCOND模块）
 
 ## 基于最局域化万尼尔函数相干输运，使用WanT模块
