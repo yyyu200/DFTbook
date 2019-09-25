@@ -160,6 +160,10 @@ http://exciting-code.org/elastic
 
 ## CRITIC2: Bader analysis, laplacian of density and potentials, non-covalent interaction plots and much more
 
+## ATAT 
+
+Thermodynamic modeling of alloys (order-disorder transition, phonons, special quasirandom structures, CALPHAD models, etc.).
+
 
 # 可视化工具
 
@@ -179,8 +183,6 @@ An alternative graphical user interface (also for WIndows and Mac): BURAI by Sat
 
 ## Schrodinger Materials Science Suite
 
-
-
 ## Other QE resources found in external sites:
 
 Visualization of the results can be obtained using XCrySDen
@@ -192,6 +194,4 @@ VMD, VESTA, GDIS, J-ICE (on-line converter available at this link)
 Virtual NanoLab (VNL) graphical user interface, a free product by QuantumWise
 
 NanoHub
-
-ATAT Thermodynamic modeling of alloys (order-disorder transition, phonons, special quasirandom structures, CALPHAD models, etc.).
 
