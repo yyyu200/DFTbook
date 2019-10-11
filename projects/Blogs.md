@@ -1,7 +1,7 @@
 ---
 layout: project
 title: Blogs
-description: Description of the project.
+description: DFT introduction
 "header-img": "img/home-bg.jpg"
 category: Blogs
 published: true
