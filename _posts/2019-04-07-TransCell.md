@@ -81,13 +81,15 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})^{T}=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。如果选择\{ alat \| bohr \| angstrom\}，则原子坐标是空间直角坐标，由于结构的周期性，这里的空间直角坐标系的选择是任意的，但是习惯上还是与CELL的空间直角坐标系保持一致，坐标值在CELL_PARAMTERS所定义的平行六面体内部。\{crystal_sg\}是在指定了空间群之后，定义对称性不等价的原子位置，与```space_group, uniqueb, origin_choice, rhombohedral```配套使用。
 
-QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：考虑到画图，VESTA不直接支持QE格式，需要转格式处理输入和输出。设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。这种设置后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。设置```ibrav=0```要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。对于只做原胞的计算，可以使用```ibrav```$\neq$0，这样方便找到对称性。对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
+QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：
 
-输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。XCrysDen支持CELL_PARAMETERS{alat}这种格式，但是不支持CELL_PARAMETERS {angstrom}。
+(1)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。这种设置后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。设置```ibrav=0```要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
 
-最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。
+(2)设置```ibrav```$\neq$0，写出celldm(1-6)，这时不写CELL_PARAMETERS，这时输出仍包含CELL_PARAMETERS以alat（celldm(1)）为单位。
 
-注：自6.4.1版本，[官方](https://gitlab.com/QEF/q-e/wikis/Releases/Quantum-Espresso-6.4.1-Release-Notes)不推荐celldm(1)=1.88972613（任何<2的值）的做法，这里也修正为celldm(1)设置为晶格常数。
+最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
+
+注：自6.4.1版本，[官方](https://gitlab.com/QEF/q-e/wikis/Releases/Quantum-Espresso-6.4.1-Release-Notes)不推荐celldm(1)=1.88972613（任何<2的值）的做法，这里也修正为celldm(1)设置为晶格常数，或用ibrav$\neq$0。
 
 ## 晶胞和原胞的相互转换
 
