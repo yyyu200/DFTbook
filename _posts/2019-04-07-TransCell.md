@@ -126,6 +126,24 @@ P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
     <img src="https://yyyu200.github.io/DFTbook/img/trans_cell.png" width="830" />
 </p>
 
+对于菱方布拉伐格子，原胞计算用（ibrav=5），cif生成的是六方的晶胞，体积是菱方的3倍，这时转换矩阵如下：
+$$
+H \rightarrow R \\ 
+P=\quad
+\begin{pmatrix}
+2\over 3 & -{1 \over 3} & -{1 \over 3} \\
+1 \over 3 & 1 \over 3 & -{2 \over 3} \\
+1 \over 3 & 1 \over 3 & 1 \over 3  \\
+\end{pmatrix}
+\quad 
+Q=\quad
+\begin{pmatrix}
+ 1 & 0 & 1 \\
+-1 & 1 & 1 \\
+ 0 &-1 & 1 \\
+\end{pmatrix}
+$$
+
 周期性单元CELL的变换，还可以包含平移，平移$\vec{p}$用变换前的基矢定义为：$\vec{p}=p_{1}\vec{a}+p_{2}\vec{b}+p_{3}\vec{c}$。平移的逆变换$\vec{q}=q_{1}\vec{a'}+q_{2}\vec{b'}+q_{3}\vec{c'}$，有$\vec{q}=-\mathbf{P}^{-1}\vec{p}$。
 
 分数坐标的变换公式为：
