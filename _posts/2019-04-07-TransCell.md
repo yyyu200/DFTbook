@@ -193,7 +193,7 @@ $$，
 
 第三，确定平板和真空的厚度。无论在平板内两个表面的距离，还是真空两边表面的距离都要足够大，以隔离两个表面的作用，模拟固体表面的性质，真空至少需要10Å到20Å。建议真空放在CELL的z方向的两端（如上图，垂直表面方向记为z）。有时，为了方便，Slab模型的CELL的基矢并不是正交的，但是考虑到周期性这种CELL与正交是等价的。有的文献描述平板厚度时，提到了**层**（layer）的概念，层并没有无争议的定义，需要依情况而定。有时，材料在垂直晶面方向有周期性，那么层可能是周期的个数；而另一些材料有若干层原子为一组，组与组之间距离较大可以明显划分开，这里的组就是层；还有的材料，在垂直晶面方向杂乱无章，一个原子或几个具有相同z坐标的原子就是一层。
 
-建好超胞之后，变换CELL原子和分数坐标的方法为：将空间直角坐标系做旋转，总可以实现x轴沿第一个基矢方向，z轴与x轴垂直且沿第三个基矢方向（原第一和第三基矢不垂直的，由于三维周期性，也可以将第三基矢投影到垂直表面方向，从而与第一基矢垂直），先将第三基矢投影到垂直表面方向：
+建好超胞之后，变换CELL原子和分数坐标的方法为：将空间直角坐标系做旋转，总可以实现x轴沿第一个基矢（记为$\vec{a}$）方向，z轴与x轴垂直且沿第三个基矢（记为$\vec{c}$）方向（原第一和第三基矢不垂直的，由于三维周期性，也可以将第三基矢投影到垂直表面方向，从而与第一基矢垂直），首先，将第三基矢投影到垂直表面方向：
 
 $$\vec{\tilde{c}} = (\vec a \times \vec b)\frac {\vec{c} \cdot (\vec a \times \vec b)} {|\vec a \times \vec b|^2} $$
 
@@ -210,7 +210,7 @@ $$\quad
 \quad
 $$
 
-真空厚度记为$d_{vacuum}$，找到原子分数坐标最大和最小的两个原子，新的z方向长度为$$\vert\vec c^{\prime}\vert=(1-x_{max,3}+x_{min,3})\vert\vec c\vert+d_{vacuum}$$。加入真空后，分数坐标如下变换，可以将真空置于CELL的两端：
+真空厚度记为$d_{vacuum}$，找到原子分数坐标最大和最小的两个原子，新的z方向长度为$$\vert\vec c^{\prime}\vert=(1-x_{max,3}+x_{min,3})\vert\vec c\vert+d_{vacuum}$$。加入真空后，分数坐标如下变换，可以将真空置于CELL的两端，
 
 $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x_{i2},[d_{vacuum}/2+(x_{i3}-x_{min,3})\vert\vec c\vert]/{\vert\vec c^{\prime}\vert})^T$$。
 
@@ -232,7 +232,7 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 4. Q. Li et. al., Superhard Monoclinic Polymorph of Carbon, Phys. Rev. Lett. 102, 175506 (2009), doi:10.1103/PhysRevLett.102.175506.A. R. Oganov and C. W. Glass, Crystal structure prediction using em ab initio evolutionary techniques: Principles and applications, J. Chem. Phys. 124, 244704 (2006), doi:10.1063/1.2210932.
 
->建模型的第一原理是符合实际。
+> 建模型的第一原理是符合实际。
 
 > 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
 
