@@ -126,7 +126,7 @@ P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
     <img src="https://yyyu200.github.io/DFTbook/img/trans_cell.png" width="830" />
 </p>
 
-对于菱方布拉伐格子，原胞计算用（ibrav=5），cif生成的是六方的晶胞，体积是菱方的3倍，这时转换矩阵如下：
+对于菱方布拉伐格子，原胞计算用（ibrav=5），cif生成的是六方的晶胞，体积是菱方的3倍，这时转换矩阵如下，参见[注1](#note1) [注2](#note2)：
 $$
 H \rightarrow R \\ 
 P=\quad
@@ -236,7 +236,7 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 ## 注释
 
-<span id = "note1">1.</span> 注意晶胞和原胞的区别，ibrav$\neq0$是用来设置原胞的，布拉伐格子中的7个简单格子本身也是晶体的原胞，而底心、面心、体心的7个布拉伐格子本身是晶胞，存在体积更小的原胞。
+<span id = "note1">1.</span> 注意晶胞和原胞的区别，ibrav$\neq0$是用来设置原胞的，布拉伐格子中的7个简单格子本身也是晶体的原胞（除了菱方外，既是原胞也是晶胞，菱方是原胞但不是晶胞，菱方的晶胞是六方的简单格子，体积是原胞的3倍），而底心、面心、体心的7个布拉伐格子本身是晶胞，存在体积更小的原胞。
 
 <span id = "note2">2.</span> trigonal三方晶系有两种布拉伐格子，一种是ibrav=5，菱方（rhombohedral）布拉伐格子，另一种是ibrav=4，六方（hexgonal）布拉伐格子，晶体属于菱方还是六方要看具体的空间群，在hexgonal和trigonal晶系中，7个空间群（$R3, R\overline{3}, R32, R3m, R3c, R\overline{3}m, R\overline{3}c$）具有菱方布拉伐格子的原胞，其余的45个空间群具有六方布拉伐格子的原胞。这里的菱方和六方是指晶体的格点系统lattice system，而非晶系，格点系统是按照布拉伐格子分类的，晶系是按照晶体点群分类的。
 
