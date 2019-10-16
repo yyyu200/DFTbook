@@ -67,9 +67,9 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 这里空间直角坐标系的选取，对于```ibrav```$\neq$0是在QE程序内部进行的，用户不需要设置；对于```ibrav=0```是用户通过写出CELL_PARAMETERS而确定的。
 
-设置```ibrav=0```，这时需要在输入文件中写入```CELL_PARAMETERS```，即CELL的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，比如，将原点放在某个原子上，将z轴定义为布拉伐格子的基矢c方向，这里坐标系的不同选择，对应的原子坐标会有一个单位正交矩阵所定义的变换，但是要求是右手系。坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由```celldm(1)```或```A```定义的晶格常数单位。设置```ibrav=0```并写出```CELL_PARAMETERS```这种方法适合用来设置超胞、slab模型等，也可以用来建原胞，是一种通用性较好的方法，并且与其他结构文件格式转换较为方便，也更方便进行后续计算。
+设置```ibrav=0```，这时需要在输入文件中写入```CELL_PARAMETERS```，即CELL的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，基矢量是空间直角坐标系中的直角坐标（笛卡尔坐标），空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，比如，将原点放在某个原子上，将z轴定义为布拉伐格子的基矢c方向，这里坐标系的不同选择，对应的原子坐标会有一个单位正交矩阵所定义的变换，但是要求是右手系。坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由```celldm(1)```或```A```定义的晶格常数单位。设置```ibrav=0```并写出```CELL_PARAMETERS```这种方法适合用来设置超胞、slab模型等，也可以用来建原胞，是一种通用性较好的方法，并且与其他结构文件（cif，VESTA，POSCAR等）格式转换较为方便，也更方便进行后续计算。
 
-设置```ibrav```$\neq$0，这时会生成布拉伐格子相应的原胞。[表1](#tab1)列出了```ibrav```和```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav=5,-5,9,-9,12,-12```分别是三方、底心正交、简单单斜原胞的两种空间直角坐标系的取法；```ibrav```$\neq$0也可以用来设置超胞等结构，但是超胞推荐```ibrav=0```的方法。[注1](#note1) [注2](#note2)
+设置```ibrav```$\neq$0，这时会生成布拉伐格子相应的原胞。[表1](#tab1)列出了```ibrav```和```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav=5,-5,9,-9,12,-12```分别是三方、底心正交、简单单斜原胞的两种空间直角坐标系的取法；```ibrav```$\neq$0中的简单格子也可以用来设置超胞等结构（对于超胞不要再使用面心、体心等非简单格子）。[注1](#note1) [注2](#note2)
 
 在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，和celldm一样，唯一地确定了CELL，定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由表1给出。
 
@@ -83,9 +83,9 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：
 
-(1)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。这种设置后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。设置```ibrav=0```要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。分数坐标的三个分量值建议保持在0到1之间，更符合习惯。
+(1)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。这种设置后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。设置```ibrav=0```要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。分数坐标的三个分量值建议保持在0到1之间，更符合习惯。`ibrav=0`一个不足之处是输出了点群操作但是没有输出点群名称（需设置`verbosity='high'`），可以将qe_release_6.4/PW/src/summary.f90第608行```IF ( ibrav == 0 ) RETURN```加注释，重新编译。
 
-(2)设置```ibrav```$\neq$0，写出celldm(1-6)，这时不写CELL_PARAMETERS，这时输出仍包含CELL_PARAMETERS以alat（celldm(1)）为单位。
+(2)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用简单格子的ibrav，写出celldm(1-6)，这时不写CELL_PARAMETERS，输出仍包含CELL_PARAMETERS以alat（celldm(1)）为单位，这也是一种通用的方法，画图时用输出里的CELL_PARAMETERS，缺点是画图可能需要转换单位。
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
 
@@ -126,7 +126,7 @@ P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
     <img src="https://yyyu200.github.io/DFTbook/img/trans_cell.png" width="830" />
 </p>
 
-对于菱方布拉伐格子，原胞计算用（ibrav=5），cif生成的是六方的晶胞，体积是菱方的3倍，这时转换矩阵如下，参见[注1](#note1) [注2](#note2)：
+对于菱方布拉伐格子，见[注2](#note2)的7种空间群，cif生成的是六方的晶胞，体积是菱方的3倍，原胞计算用（ibrav=5，同时定义celldm(1)和celldm(4)），用ibrav=0时也存着晶胞转原胞的问题，转换矩阵如下，参见[注1](#note1) ：
 $$
 H \rightarrow R \\ 
 P=\quad
