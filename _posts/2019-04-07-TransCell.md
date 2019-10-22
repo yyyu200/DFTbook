@@ -85,9 +85,9 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 
 (1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用简单格子的ibrav，写出celldm(1-6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。
 
-(2)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。VESTA画图CELL_PARAMETERS已经是$\AA$为单位。
+(2)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。VESTA画图CELL_PARAMETERS已经是Å为单位。
 
-第二种设置```ibrav=0```后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。分数坐标的三个分量值建议保持在0到1之间，更符合习惯。`ibrav=0`一个不足之处是输出了点群操作但是没有输出点群名称（需设置`verbosity='high'`），可以将qe_release_6.4/PW/src/summary.f90第608行```IF ( ibrav == 0 ) RETURN```加注释，重新编译。
+第二种设置```ibrav=0```后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。`ibrav=0`一个不足之处是输出了点群操作但是没有输出点群名称（需设置`verbosity='high'`），可以将qe_release_6.4/ PW/src/summary.f90第608行```IF ( ibrav == 0 ) RETURN```加注释，重新编译。
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
 
