@@ -246,7 +246,7 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 用VESTA导出POSCAR格式文件，命名为Al2O3.vasp。
 
-运行python CELL.py [文件](https://github.com/yyyu200/SlabMaker/blob/master/CELL.py)。
+运行python CELL.py [文件](../../../../../img/CELL.py)。
 
 得到变换矩阵
 ```
@@ -259,14 +259,14 @@ P2
  [-3.33333328e-01 -3.33333313e-01  3.00064645e-09]
  [ 0.00000000e+00  0.00000000e+00 -1.00000000e+00]]
 ```
-依次输入VESTA，输完一次要点一下remove symmetry再输入P2，得到最终的slab单元如图。
+依次输入VESTA，输完一次要点一下remove symmetry再输入P2，得到具有110面内最小二维周期单元的cell如图，。
 
 
 <p align="center">
     <img src="../../../../../img/alo-slabunit.png" width="500" />
 </p>
 
-CELL.py输出了slab的POSCAR，见运行目录的[tmp/slab.vasp](../../../../../img/slab-alo110.vasp)。最终slab如图。
+CELL.py输出了slab的POSCAR（真空厚度和层数在源程序中设置），见运行目录的[tmp/slab.vasp](../../../../../img/slab-alo110.vasp)。最终slab如图。
 
 <p align="center">
     <img src="../../../../../img/alo-slab.png" width="500" />
@@ -293,6 +293,7 @@ CELL.py输出了slab的POSCAR，见运行目录的[tmp/slab.vasp](../../../../..
 > 一部大书是一项大罪。 ——卡利马科斯 (Callimachus)
 
 Update on 2019/04/22.
+Update on 2019/11/15.
 
 <span id="busuanzi_container_page_pv">
   本文总阅读量<span id="busuanzi_value_page_pv"></span>次
