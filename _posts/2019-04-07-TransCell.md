@@ -246,7 +246,15 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 用VESTA导出POSCAR格式文件，命名为Al2O3.vasp。
 
-运行python CELL.py [文件](../../../../../img/CELL.py)。
+运行python
+
+```python
+    from CELL import CELL
+    unit=CELL("Al2O3.vasp")
+
+    slab=unit.makeslab([1,1,0], layer=2)
+    slab.print_poscar("./tmp/slab.vasp")
+```
 
 得到变换矩阵
 ```
