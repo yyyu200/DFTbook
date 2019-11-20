@@ -211,7 +211,7 @@ $$，
 
 首先，确定要计算的晶面。晶面用密勒指数标记，密勒指数是不过原点的平面在基矢方向的截距倒数约化成的整数比，注意密勒指数是相对晶胞定义的，通常是三个数，如(001)，(110), (531)等等，一般低密勒指数的面较常见，但实验上也会出现高密勒指数的面。对于六方和三方（菱方）晶体，习惯上用四个数的密勒指数，如(0001),(1-101)等，这里是选了垂直三重旋转轴的面内3个基矢以及沿着三重旋转轴的1个基矢，一共4个基矢而定义的密勒指数，其中，前三个指数的和一定是零，所以只有3个独立的指数，有的文献对于六方或三方结构的晶面也用三指数的表示。晶面确定后，还要根据实验确定表面原子的种类，实验上由于生长条件不同可能有多种表面原子的情况，例如GaN(0001)的表面有Ga和N原子截止的不同情况。
 
-第二，要找到面内的最小周期性单元。先通过密勒指数的定义找到一个面内周期单元（可能非最小），以这个面内周期单位为基础，找最小单元通常用蛮力法从小到大寻找若干组，对于超胞中每一个原子，分别找到面内的最小的几个单元，在不同原子取法中，找到共同面内周期单元中最小的一个，即是要找的表面结构二维最小单元，为了实现这一算法，请关注github上的项目[SlabMaker](https://github.com/yyyu200/SlabMaker)，实际操作用MS的建模模块进行。
+第二，要找到面内的最小周期性单元。先通过密勒指数的定义找到一个面内周期单元（可能非最小），以这个面内周期单位为基础，找最小单元通常用蛮力法从小到大寻找若干组，对于超胞中每一个原子，分别找到面内的最小的几个单元，在不同原子取法中，找到共同面内周期单元中最小的一个，即是要找的表面结构二维最小单元，为了实现这一算法，请关注github上的项目[SlabMaker](https://github.com/yyyu200/SlabMaker)，实际操作也可以用MS的建模模块进行，这里介绍的方法与文献[5]有一定的类似。[pymatgen](https://pymatgen.org/)也有slab建模功能，见https://pymatgen.org/pymatgen.core.surface.html。
 
 第三，确定平板和真空的厚度。无论在平板内两个表面的距离，还是真空两边表面的距离都要足够大，以隔离两个表面的作用，模拟固体表面的性质，真空至少需要10Å到20Å。建议真空放在CELL的z方向的两端（如上图，垂直表面方向记为z）。有时，为了方便，Slab模型的CELL的基矢并不是正交的，但是考虑到周期性这种CELL与正交是等价的。有的文献描述平板厚度时，提到了**层**（layer）的概念，层并没有无争议的定义，需要依情况而定。有时，材料在垂直晶面方向有周期性，那么层可能是周期的个数；而另一些材料有若干层原子为一组，组与组之间距离较大可以明显划分开，这里的组就是层；还有的材料，在垂直晶面方向杂乱无章，一个原子或几个具有相同z坐标的原子就是一层。
 
@@ -246,7 +246,7 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 用VESTA导出POSCAR格式文件，命名为Al2O3.vasp。
 
-运行python
+从[这里](https://github.com/yyyu200/SlabMaker)下载CELL.py文件，运行python
 
 ```python
     from CELL import CELL
@@ -290,6 +290,25 @@ CELL.py输出了slab的POSCAR（真空厚度和层数在源程序中设置），
     <img src="../../../../../img/alo-slab.png" width="500" />
 </p>
 
+以上是slab的z方向恰好具有周期性的情况，另外一种则当cell的z方向沿着miller指数表面法向时，z方向不具有周期性（或具有极长的周期性），不同于文献[5]的做法，这里在加入真空之后，将cell的c投影到z方向，由于面内的周期性边界条件，这么做是可行的。下面以$\alpha-Al_{2}O_{3}$的(104)面为例（这与文献[5]的$\alpha-Fe_{2}O_{3}$是同一种结构）。
+
+```python
+from CELL import CELL
+
+unit=CELL("Al2O3.vasp")
+
+slab=unit.makeslab([1,0,4], layer=1)
+slab.print_poscar("./slab.vasp")
+```
+
+得到[slab.vasp](../../../../../img/alo104.vasp)，用VESTA画图如下。
+
+<p align="center">
+    <img src="../../../../../img/alo-slab104.png" width="500" />
+</p>
+
+可以看到与文献[5]Fig.1(d)的面内是等价的，cell的c沿垂直表面方向有利于如功函数等的计算。建好slab之后，可以根据需要删掉部分原子以得到特定的截止表面和厚度。
+
 ## 注释
 
 <span id = "note1">1.</span> 注意晶胞和原胞的区别，对于非简单格子ibrav$\neq0$适合于设置原胞（对于简单格子ibrav$\neq$0当然也是设置了原胞），布拉伐格子中的7个简单格子本身就是原胞，而且，除了菱方外的6个简单格子，不仅是原胞，同时也是晶胞，菱方的布拉伐格子是原胞但不是晶胞，菱方的晶胞是六方的简单格子，体积是原胞的3倍，而底心、面心、体心的7个布拉伐格子本身是晶胞，存在体积更小的原胞。
@@ -305,6 +324,8 @@ CELL.py输出了slab的POSCAR（真空厚度和层数在源程序中设置），
 3. http://www.quantum-espresso.org/Doc/INPUT_PW.html
 
 4. Q. Li et. al., Superhard Monoclinic Polymorph of Carbon, Phys. Rev. Lett. 102, 175506 (2009), doi:10.1103/PhysRevLett.102.175506.A. R. Oganov and C. W. Glass, Crystal structure prediction using em ab initio evolutionary techniques: Principles and applications, J. Chem. Phys. 124, 244704 (2006), doi:10.1063/1.2210932.
+
+5. Wenhao Sun, Gerbrand Ceder, Efficient creation and convergence of surface slabs. Surface Science 617 (2013) 53–59.
 
 > 建模型的第一原理是符合实际。
 
