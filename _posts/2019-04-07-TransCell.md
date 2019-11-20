@@ -301,7 +301,7 @@ slab=unit.makeslab([1,0,4], layer=1)
 slab.print_poscar("./slab.vasp")
 ```
 
-得到[slab.vasp](../../../../../img/alo104.vasp)，用VESTA画图如下。
+得到[slab.vasp](https://github.com/yyyu200/DFTbook/blob/master/img/alo104.vasp)，用VESTA画图如下。
 
 <p align="center">
     <img src="../../../../../img/alo-slab104.png" width="500" />
