@@ -277,8 +277,7 @@ reduced slab cell
  [ 2.47338171e-08  3.89813986e-08 -2.37898727e+01]]
 ```
 
-依次输入VESTA，输完一次要点一下"remove symmetry"再输入P2，得到具有110面内最小二维周期单元的cell如图，面内基矢量的夹角是84.16°。
-
+其中变换P1是得到一个预选的slab，变换P2是将这个预选slab的cell约化到具有110面内最小二维周期单元的slab，如图，面内基矢量的夹角是84.16°，结果正确[6]。
 
 <p align="center">
     <img src="../../../../../img/alo-slabunit.png" width="500" />
@@ -326,6 +325,8 @@ slab.print_poscar("./slab.vasp")
 4. Q. Li et. al., Superhard Monoclinic Polymorph of Carbon, Phys. Rev. Lett. 102, 175506 (2009), doi:10.1103/PhysRevLett.102.175506.A. R. Oganov and C. W. Glass, Crystal structure prediction using em ab initio evolutionary techniques: Principles and applications, J. Chem. Phys. 124, 244704 (2006), doi:10.1063/1.2210932.
 
 5. Wenhao Sun, Gerbrand Ceder, Efficient creation and convergence of surface slabs. Surface Science 617 (2013) 53–59.
+
+6. Takahiro Kurita, Kazuyuki Uchida, and Atsushi Oshiyama, Atomic and electronic structures of α-Al2O3 surfaces, Phys. Rev. B 82, 155319(2010).
 
 > 建模型的第一原理是符合实际。
 
