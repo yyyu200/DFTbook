@@ -246,10 +246,10 @@ $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x
 
 用VESTA导出POSCAR格式文件，命名为Al2O3.vasp。
 
-从[这里](https://github.com/yyyu200/SlabMaker)下载CELL.py文件，运行python
+从[这里](https://github.com/yyyu200/SlabMaker)下载build.py文件，运行python
 
 ```python
-    from CELL import CELL
+    from build import CELL
     unit=CELL("Al2O3.vasp")
 
     slab=unit.makeslab([1,1,0], layer=2)
@@ -280,7 +280,7 @@ inplane edge and angle:  5.128464149403621 6.99637224468677 84.15650034981714  d
     <img src="../../../../../img/alo-slabunit.png" width="500" />
 </p>
 
-CELL.py输出了slab的POSCAR（真空厚度和层数在源程序中设置），见运行目录的[tmp/slab.vasp](../../../../../img/slab-alo110.vasp)。最终slab如图。
+build.py输出了slab的POSCAR（真空厚度和层数在源程序中设置），见运行目录的[tmp/slab.vasp](../../../../../img/slab-alo110.vasp)。最终slab如图。
 
 <p align="center">
     <img src="../../../../../img/alo-slab.png" width="500" />
@@ -289,7 +289,7 @@ CELL.py输出了slab的POSCAR（真空厚度和层数在源程序中设置），
 以上是slab的c方向恰好具有周期性的情况，另外一种则当cell的c方向沿着表面法向时，表面法向不具有周期性（或具有极长的周期性），不同于文献[5]的做法，这里在加入真空之后，将cell的c投影到z方向，由于面内的周期性边界条件，这么做是可行的。下面以$\alpha-Al_{2}O_{3}$的(104)面为例（这与文献[5]的$\alpha-Fe_{2}O_{3}$是同一种结构）。
 
 ```python
-from CELL import CELL
+from build import CELL
 
 unit=CELL("Al2O3.vasp")
 
