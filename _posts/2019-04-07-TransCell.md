@@ -271,7 +271,7 @@ reduced slab cell
 reduced slab No. of atoms:  40
 slab and vacuum length:  8.78987274001554 15.0 Ang.
 inplane edge and angle:  5.128464149403621 6.99637224468677 84.15650034981714  degree.
-!reduced slab cell area:  35.694197603259965  Ang^2.
+reduced slab cell area:  35.694197603259965  Ang^2.
 ```
 
 其中变换P1是得到一个预选的cell，对预选cell加入真空，转动c沿着垂直表面方向（变换矩阵见前文），变换P2是将cell约化到具有110面内最小二维周期单元的slab，面内基矢量的夹角是84.16°，结果参考见[6]。
