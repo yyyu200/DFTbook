@@ -104,21 +104,29 @@ Phonon calculation using the Frozen-Phonon approach
 http://atztogo.github.io/phonopy/
 
 ## PHON
+
 Phonon calculation using the Frozen-Phonon approach
+
 http://www.homepages.ucl.ac.uk/~ucfbdxa/phon/
 
 ## ALAMODE
+
 lattice anharmonicity and lattice thermal conductivity of solids
 
 https://alamode.readthedocs.io/en/latest/index.html
 
 ## EPW
 
-EPW is the short name for "Electron-phonon Wannier". EPW is an open-source F90/MPI code which calculates properties related to the electron-phonon interaction using Density-Functional Perturbation Theory and Maximally Localized Wannier Functions. EPW is developed and maintained by Samuel Poncé, Roxana Margine, Carla Verdi, and Feliciano Giustino.
+EPW是"Electron-phonon Wannier"的缩写，与ph.x模块一样可以计算电声子耦合相关量，EPW通过Wannier函数，可以计算更密的k、q点网格[1,2]。
+
+
 
 Please also consider citing the EPW papers:
-1) F. Giustino, M. L. Cohen, and S. G. Louie, Phys. Rev. B 76, 165108 (2007)
-2) S. Ponc&rsquo;e, E. R. Margine, C. Verdi and F. Giustino, Comput. Phys. Commun. 209, 116 (2016)
+
+[1] F. Giustino, M. L. Cohen, and S. G. Louie, Phys. Rev. B 76, 165108 (2007)
+
+[2] S. Ponc&rsquo;e, E. R. Margine, C. Verdi and F. Giustino, Comput. Phys. Commun. 209, 116 (2016).
+
 
 # 输运
 
