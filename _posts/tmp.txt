@@ -923,7 +923,7 @@ phonons of GaAs at Gamma
 0.0 0.0 0.0
 ```
 
-fildyn是输出动力学矩阵文件，共有q点数+1个，后缀0是这些q点的坐标，后缀1-q点数是动力学矩阵、频率等值，$Gamma$点还有光学介电常数、有效电荷等值。在输出ph.out中可以找到高频介电常数张量$\epsilon_{ij}(\infty)$（实验值10.86，Ref.[10]），以及玻恩有效电荷张量$Z_{ij}$（实验值2.07）：
+在输出ph.out中可以找到高频介电常数张量$\epsilon_{ij}(\infty)$（实验值10.86，Ref.[10]），以及玻恩有效电荷张量$Z_{ij}$（实验值2.07）：
 ```
           Dielectric constant in cartesian axis 
 
@@ -998,19 +998,12 @@ phonons of GaAs q-grid
  /
 ```
 
-ph.x计算结束后（这一步ph.x计算量很大，24核算了约30小时，q点可能取多了，截断能也偏大了🤔）用q2r.x将动力学矩阵由q空间变换到实空间，输入q2r.inp如下，运行```q2r.x < q2r.inp > q2r.out```：
+ph.x计算结束后（这一步计算量很大，24核算了约30小时，q点可能取多了，截断能也偏大了🤔）用q2r.x将动力学矩阵由q空间变换到实空间，输入q2r.inp如下，运行```q2r.x < q2r.inp > q2r.out```：
 ```
  &input
    fildyn='gs666.dyn', zasr='simple', flfrc='gs666.fc'
  /
 ```
-
-其中，flfrc是q2r.x输出的力常数文件。在输出文件q2r.out中需要有以下内容。
-
-```
-fft-check success (sum of imaginary terms < 10^-12)
-```
-
 
 matdyn.x通过实空间nq1×nq2×nq3超胞上interatomic force constants计算任意q点声子频率。对于非立方材料各项异性的LO-TO分裂需要将$\Gamma$点写两次，立方材料则不需要。将以下保存为matdyn.inp，运行```matdyn.x < matdyn.inp > matdyn.out```，计算声子色散，q点定义见安装包[/Doc/brillouin_zones.pdf](https://github.com/QEF/q-e/blob/master/Doc/brillouin_zones.pdf)，可以用字母表示特殊q点，也可以用笛卡尔坐标（2$\pi$/alat为单位）。
 
@@ -1044,11 +1037,11 @@ matdyn.x通过实空间nq1×nq2×nq3超胞上interatomic force constants计算�
 
 面心立方Pb，晶格常数9.316 bohr（4.93Å）。与4.2节同样的原因，使用LDA赝势，vc-relax得到优化晶格常数是9.2083 bohr。
 
-以下计算分为7个步骤（第5步非必需），其中q2r.x,matdyn.x,lambda.x这三个模块运行时不用mpi并行。
+以下计算分为7个步骤，其中q2r.x,matdyn.x,lambda.x这三个模块运行时不用mpi并行。
 
 (1) 较密k点的scf计算
 
-输入如下，注意这一步加入了`la2F=.true.`，k点设置为36×36×36的网格，此处必须包含$\Gamma$点且是第2步scf计算k点、声子ph.x计算q点的整数倍。计算会输出一个./tmp/pwscf.a2Fsave文件，会在后面的ph.x计算中读取。
+输入如下，注意这一步加入了`la2F=.true.`，k点设置为36×36×36的网格，此处必须是第2步k点的整数倍。计算会输出一个./tmp/pwscf.a2Fsavew文件，会在后面的ph.x计算中读取。
 
 ```
 &CONTROL
@@ -1153,15 +1146,9 @@ Electron-phonon coefficients
  /
 ```
 
-在输出文件q2r.out中需要有以下内容。
-
-```
-fft-check success (sum of imaginary terms < 10^-12)
-```
-
 (5) matdyn.x计算q路径上声子线宽
 
-设置`la2F=.true., dos=.false.`会计算声子线宽$\gamma$，q点路径是笛卡尔坐标，以2$\pi$/alat为单位。
+设置`la2F=.true., dos=.false.`会计算声子线宽$\gamma$，q点路径是笛卡尔坐标，以2pi/alat为单位。
 
 ```
 &input
@@ -1208,12 +1195,12 @@ fft-check success (sum of imaginary terms < 10^-12)
    fldos='phonon.dos', nk1=10, nk2=10, nk3=10, ndos=50
 /
 ```
-
 得到输出文件alpha2F.dat，取最后一列展宽为0.05的结果画图如下。
 
 <p align="left">
     <img src="../../../../../img/alpha2F_lead_PH.png" width="1000"/>
 </p>
+
 
 (7) lambda.x计算 $\lambda$ 和 $T_C$
 
