@@ -12,7 +12,7 @@ DFTbook是一个旨在帮助材料第一性原理计算初学者快速入门的�
 更多线上交流见qq群：533372531（或扫描下方二维码，加群请备注材料计算）。
 
 <p align="left">
-    <img src="../img/QEgroup.png" width="714"/>
+    <img src="../img/QEgroup.png" width="357"/>
 </p>
 
 <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次
