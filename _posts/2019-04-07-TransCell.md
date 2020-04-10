@@ -25,9 +25,11 @@ trans: cube
 
 首先，说明以下几个概念：平移群，点群，空间群，原胞，晶胞，布拉伐格子，晶系，晶面，布里渊区。
 
-**晶体**，是自然形成和人工合成的固体的形态，大量原子周期性排列则为晶体，由于结合能最低，纯净物在熔融条件下缓慢降温会自发形成晶体。
+**晶体**（crystal），是原子、离子或分子周期性排列的结构。
 
-**群**，是一种代数结构，在集合上封闭的运算，运算满足结合律，存在单位元，存在逆元，定义为群。可以将空间中的晶体坐标看成集合，在考虑块材性质时，可以认为晶体在空间无限延伸，允许其转动、平移，则可以构成群，转动、反演为群的运算，或称之为变换、操作。
+**格子（格点）**（lattice），是数学上的点构成的周期性结构。
+
+**群**，是一种代数结构，在集合上封闭的运算，运算满足结合律，存在单位元，存在逆元，定义为群。可以将空间中的晶体格子坐标看成集合，在考虑块材性质时，可以认为晶体在空间无限延伸，允许其转动、平移，则可以构成群，转动、反演为群的运算，或称之为变换、操作。
 
 如果只允许平移，称为**平移群**。
 
@@ -49,9 +51,11 @@ trans: cube
 
 **晶面**是相对于晶胞定义的。
 
-14种布拉伐格子，按照具有的点群分类，分为7种**晶系**（crystal system），即：
+按照晶体具有的点群分类，分为7种**晶系**（crystal system），即：triclinic, monoclinic, orthorhombic, tetragonal, trigonal, hexagonal和cubic。
 
-triclinic, monoclinic, orthorhombic, tetragonal, trigonal, hexagonal和cubic。
+14种布拉伐格子，分为7种**格点系**（lattice systems），即：triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal和cubic。
+
+晶系和格点系的区别见[注2](#note2)。
 
 ## QE中的结构定义
 
