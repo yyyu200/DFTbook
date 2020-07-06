@@ -204,7 +204,7 @@ $$，
 ### 平板（slab）模型的建立
 
 <p align="center">
-    <img src="https://kitchingroup.cheme.cmu.edu/dft-book/images/surface-construction.png" width="300" />
+    <img src="https://yyyu200.github.io/DFTbook/img/surface-construction.png" width="300" />
 </p>
 
 对于固体表面，平面波计算要首先建立平板模型，选取垂直晶面方向足够厚的平板，并且加入足够厚的真空，以消除表面之间的作用，实现表面性质的计算。对于异质结构，如超晶格，需要建立repeated-slab模型，二维材料异质结，如双层石墨烯“魔角”，模型建立也会遇到有共性的问题。
