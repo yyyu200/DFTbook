@@ -43,7 +43,7 @@ Configured for compilation of parallel executables.
 并且找到了mkl库。
 
 <p align="left">
-    <img src="../../../../../img/configure_success.png" width="1000"/>
+    <img src="../../../../../img/confs.png" width="1000"/>
 </p>
 
 make.sys里面有几行要根据实际情况修改如下，是本机器的编译器，必要时写出完整路径名
