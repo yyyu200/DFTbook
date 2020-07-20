@@ -21,7 +21,8 @@ trans: cube
 
 # QE安装与Linux操作系统使用
 
-作为生产的QE程序，对性能要求比较高，为了保证高性能的运行，mkl、ifort的安装应该先进行，包括intel优化的数学库和fortran编译器，然后安装并行计算库openmpi，安装openmpi的步骤和一般linux安装源程序的方式相同，分为配置，编译，安装三步：
+作为生产的QE程序，对性能要求比较高，为了保证高性能的运行，mkl、ifort的安装应该先进行，包括intel优化的数学库和fortran编译器，然后安装并行计算库openmpi，安装openmpi的步骤和一般linux安装源程序的方式相同，分为配置、编译、安装三步：
+
 ```
 ./configure --prefix=$HOME/local
 make
@@ -29,17 +30,23 @@ make install
 ```
 。在openmpi的安装目录下面应该有mpirun，mpif90等可执行文件。
 
-1. 从官网找到安装包，下载完成，得到源程序的压缩文件qe-6.5.tar.gz
+(1) 从官网找到安装包，下载完成，得到源程序的压缩文件qe-6.5.tar.gz
 解压```tar -xzvf qe-6.5.tar.gz```
+解压完成，会生成一个新目录q-e-qe-6.5, ```cd q-e-qe-6.5``` 进入
 
-2. 解压完成，会生成一个新目录q-e-qe-6.5, cd q-e-qe-6.5 进入，生成的目录 应该这样子
+(2) 配置编译环境变量，在QE目录运行```./configure```。
+注意结果提示并行环境配置成功，有如下内容：
+```
+Parallel environment detected successfully.\
+Configured for compilation of parallel executables.
+```
+并且找到了mkl库。
 
-3. 接下来首先应该保证系统安装有fortran（推荐ifort）和mkl库（推荐Intel MKL）
-./configure
+<p align="left">
+    <img src="../../../../../img/configure_success.png" width="1000"/>
+</p>
 
-注意这里提示并行环境配置成功，并且找到了mkl库。
-
-这是为了配置编译环境变量的脚本，make.sys里面有几行要根据实际情况修改如下，是本机器的编译器，必要时写出完整路径名
+make.sys里面有几行要根据实际情况修改如下，是本机器的编译器，必要时写出完整路径名
 ```
 MPIF90 = mpif90
 F90 = ifort
@@ -47,7 +54,7 @@ CC = icc
 F77 = ifort
 ```
 
-4. 编译QE的各个模块
+(3) 编译QE的各个模块
 
 ```
 make pw pp
