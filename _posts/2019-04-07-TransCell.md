@@ -240,7 +240,7 @@ $$
 
 $$\vec{X^{\prime}}=(x^{\prime}_{i1},x^{\prime}_{i2},x^{\prime}_{i3})^T=(x_{i1},x_{i2},[d_{vacuum}/2+(x_{i3}-x_{min,3})\vert\vec c\vert]/{\vert\vec c^{\prime}\vert})^T$$。
 
-下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用ase和VESTA建slab模型。
+下面以$\alpha-Al_{2}O_{3}$的(110)面为例，用SlabMaker建slab模型，并用VESTA画图。
 
 从COD下载$\alpha-Al_{2}O_{3}$的[cif文件](http://www.crystallography.net/cod/1000017.cif)，用VESTA打开，材料具有菱方的原胞，密勒指数是相对晶胞定义的，画出六方的晶胞如下：
 

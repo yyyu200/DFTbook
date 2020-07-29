@@ -46,7 +46,7 @@ Configured for compilation of parallel executables.
     <img src="https://raw.githubusercontent.com/yyyu200/DFTbook/master/img/confs.png" width="1000"/>
 </p>
 
-make.sys里面有几行要根据实际情况修改如下，是本机器的编译器，必要时写出完整路径名
+make.inc里面有几行要根据实际情况修改如下，是本机器的编译器，必要时写出完整路径名
 ```
 MPIF90 = mpif90
 F90 = ifort
