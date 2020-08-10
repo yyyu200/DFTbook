@@ -1,7 +1,7 @@
 ---
-slideinit: "<section markdown=\"1\" data-background=\"https://yyyu200.github.io/DFTbook/img/slidebackground.png\"><section markdown=\"1\">"
+slideinit: "<section markdown=\"1\" data-background=\"../../../../../img/slidebackground.png\"><section markdown=\"1\">"
 vertical: "</section><section markdown=\"1\">"
-horizontal: "</section></section><section markdown=\"1\" data-background=\"https://yyyu200.github.io/DFTbook/img/slidebackground.png\"><section markdown=\"1\">"
+horizontal: "</section></section><section markdown=\"1\" data-background=\"../../../../../img/slidebackground.png\"><section markdown=\"1\">"
 layout: post
 title: 建立QE的晶体模型
 author: yyyu200
@@ -44,7 +44,7 @@ trans: cube
 **布拉伐格子**是按照基元+格子的概念定义的，确定布拉伐格子应满足：（1）所选平行六面体必须充分反映出格子的点群与平移群，即平行六面体必须与整个格子的晶系特征一致。（2）所选择平行六面体各个棱之间夹角为直角的数目最多，不为直角者尽可能地接近直角。（3）在满足上述（1）（2）条件后，所选择的平行六面体的体积应为最小。布拉伐格子即为晶胞。3维空间的布拉伐格子有14种。[下图](https://en.wikipedia.org/wiki/Bravais_lattice)是14种布拉伐格子的基矢a,b,c及夹角$\alpha, \beta, \gamma$所具有的特定关系。
 
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/BravaisLattices.png" width="563" />
+    <img src="../../../../../img/BravaisLattices.png" width="563" />
 </p>
 
 在特定的平移、旋转操作下，晶体保持不变，这种在某种操作下不变的性质称之为体系的对称性，不同的操作定义了不同的对称性，例如，沿$\vec a$方向平移2个平移基矢等。体系的薛定谔方程，由于体系的对称性，也具有变换下不变的性质，于是有量子数来标记这些变换，晶体平移对称性是一系列准连续的k值所标记的，k点所在空间称为k空间，k空间是相对晶体的原胞定义的，计算晶体的能带就是在k空间进行的，k空间也具有周期性，取原点周围的魏格纳-塞茨原胞，称为第一**布里渊区**。
@@ -62,7 +62,7 @@ trans: cube
 QE输入文件的总体结构如下图，输入文件的前半部分满足Fortran语言的Namelist语法。与结构有关的包括```SYSTEM```部分的```ibrav,celldm,nat,ntyp```以及```ATOMIC_POSITIONS```和```CELL_PARAMETERS```共三个部分。
 
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/structure_input.png" width="503" />
+    <img src="../../../../../img/structure_input.png" width="503" />
 </p>
 
 QE计算的结构都是在三维空间中周期性重复的，所以需要定义周期性的单元（这里称作CELL，单元）,以及周期性单元内的原子坐标。在QE中用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义CELL。CELL的定义本身不依赖于**空间直角坐标系**（**笛卡尔坐标系**）的选择，只需要定义三个基矢量的长度和三个夹角，但是为了计算，需要确定一个空间直角坐标系，以写出各个矢量的笛卡尔坐标，
@@ -80,7 +80,7 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 <span id = "tab1"><center><b>表1</b> 14种布拉伐格子的设置及对应的单元基矢量</center></span>
 
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/ibrav.png" width="830" />
+    <img src="../../../../../img/ibrav.png" width="830" />
 </p>
 
 在定义了CELL之后，用```ATOMIC_POSITIONS```定义CELL中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})^{T}=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。如果选择\{ alat \| bohr \| angstrom\}，则原子坐标是空间直角坐标，由于结构的周期性，这里的空间直角坐标系的选择是任意的，但是习惯上还是与CELL的空间直角坐标系保持一致，坐标值在CELL_PARAMTERS所定义的平行六面体内部。\{crystal_sg\}是在指定了空间群之后，定义对称性不等价的原子位置，与```space_group, uniqueb, origin_choice, rhombohedral```配套使用。
@@ -131,7 +131,7 @@ P_{13}\vec{a}+P_{23}\vec{b}+P_{33}\vec{c}
 <span id = "tab2"><center><b>表2</b> 常见单元变换矩阵</center></span>
 
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/trans_cell.png" width="830" />
+    <img src="../../../../../img/trans_cell.png" width="830" />
 </p>
 
 对于菱方布拉伐格子，见[注2](#note2)的7种空间群，cif生成的是六方的晶胞，体积是菱方的3倍，原胞计算用（ibrav=5，同时定义celldm(1)和celldm(4)），用ibrav=0时也存着晶胞转原胞的问题，转换矩阵如下，参见[注1](#note1) ：
@@ -173,24 +173,24 @@ $$，
 
 以底心单斜碳的同素异形体为例[4]，用[TransCell](https://github.com/yyyu200/SlabMaker)变换CELL和原子坐标，并用VESTA验证。
 
-先下载[cif文件](https://yyyu200.github.io/DFTbook/img/A_mC16_12_4i.cif)，用VESTA打开，画出晶胞如下：
+先下载[cif文件](../../../../../img/A_mC16_12_4i.cif)，用VESTA打开，画出晶胞如下：
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-UC.png"  />
+    <img src="../../../../../img/MCarbon-UC.png"  />
 </p>
 
 输入转换矩阵：
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-UC-1.png" />
+    <img src="../../../../../img/MCarbon-UC-1.png" />
 </p>
 
 得到原胞：
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-PC.png"  />
+    <img src="../../../../../img/MCarbon-PC.png"  />
 </p>
 
 原胞和晶胞的比较（见[aflow](http://aflowlib.org/CrystalDatabase/A_mC16_12_4i.html)）：
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/MCarbon-U_P.png" />
+    <img src="../../../../../img/MCarbon-U_P.png" />
 </p>
 
 ## 分数坐标和直角坐标的相互转换
@@ -204,7 +204,7 @@ $$，
 ### 平板（slab）模型的建立
 
 <p align="center">
-    <img src="https://yyyu200.github.io/DFTbook/img/surface-construction.png" width="300" />
+    <img src="../../../../../img/surface-construction.png" width="300" />
 </p>
 
 对于固体表面，平面波计算要首先建立平板模型，选取垂直晶面方向足够厚的平板，并且加入足够厚的真空，以消除表面之间的作用，实现表面性质的计算。对于异质结构，如超晶格，需要建立repeated-slab模型，二维材料异质结，如双层石墨烯“魔角”，模型建立也会遇到有共性的问题。
