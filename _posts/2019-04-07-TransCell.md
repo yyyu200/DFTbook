@@ -227,21 +227,22 @@ $$，
 
 建好超胞之后，变换CELL原子和分数坐标的方法为：将空间直角坐标系做旋转，总可以实现x轴沿第一个基矢（记为$\vec{a}$）方向，z轴与x轴垂直且沿第三个基矢（记为$\vec{c}$）方向（原第一和第三基矢不垂直的，由于三维周期性，也可以将第三基矢投影到垂直表面方向，从而与第一基矢垂直），首先，将第三基矢投影到垂直表面方向：
 
-$$\vec{\tilde{c}} = (\vec a \times \vec b)\frac {\vec{c} \cdot (\vec a \times \vec b)} {\lvert\vec a \times \vec b\rvert^2} $$
+$\vec{\tilde{c}} \
+= (\vec a \times \vec b)\frac {\vec{c} \cdot (\vec a \times \vec b)} {\lvert\vec a \times \vec b\rvert^2}
+$,
 
 再将CELL变换为：
 
-$$
-\quad
+$$\quad
 \begin{pmatrix}
-\lvert \vec a \rvert & 0 & 0 \\\\
+\lvert \vec a \rvert & 0 & 0 \\
  {\vec a \cdot \vec b } \over {\lvert \vec a \rvert} & 
 \sqrt {\vert\vec b\vert^{2}-({\vec{a} \cdot \vec{b}}/ {\vert\vec a\vert})^{2} }   
-& 0 \\\\
-0 & 0 & \vert \vec{\tilde{c}}\vert \\\\
+& 0 \\
+0 & 0 & \vert \vec{\tilde{c}}\vert \\
 \end{pmatrix}
 \quad
-$$
+$$,
 
 真空厚度记为$d_{vacuum}$，找到原子分数坐标最大和最小的两个原子，新的z方向长度为$$\vert\vec c^{\prime}\vert=(x_{max,3}-x_{min,3})\vert\vec c\vert+d_{vacuum}$$。加入真空后，分数坐标如下变换，可以将真空置于CELL的两端，
 
