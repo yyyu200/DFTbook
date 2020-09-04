@@ -3,7 +3,7 @@ slideinit: "<section markdown=\"1\" data-background=\"../../../../../img/slideba
 vertical: "</section><section markdown=\"1\">"
 horizontal: "</section></section><section markdown=\"1\" data-background=\"../../../../../img/slidebackground.png\"><section markdown=\"1\">"
 layout: post
-title: 建立QE的晶体模型
+title: 第一性原理计算建模教程
 author: yyyu200
 tags: DFT 原创
 subtitle: 
@@ -19,7 +19,7 @@ trans: cube
 * TOC
 {:toc}
 
-# 建立QE的晶体模型
+# 第一性原理计算建模教程(基于QE)
 
 ## 晶体结构要点
 
