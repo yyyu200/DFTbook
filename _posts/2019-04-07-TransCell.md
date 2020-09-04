@@ -87,7 +87,7 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：
 
-(1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用简单格子的ibrav，写出celldm(1-6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。
+(1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用简单格子的ibrav，写出celldm(1-6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。转为POSCAR格式可以用[densityflow.com](http://www.densityflow.com/p2v.html)的工具。
 
 (2)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。VESTA画图CELL_PARAMETERS已经是Å为单位。
 
