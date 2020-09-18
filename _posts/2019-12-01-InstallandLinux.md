@@ -54,7 +54,7 @@ Configured for compilation of parallel executables.
 并且找到了mkl库。
 
 <p align="left">
-    <img src="https://raw.githubusercontent.com/yyyu200/DFTbook/master/img/confs.png" width="1000"/>
+    <img src="../../../../../img/confs_results.png" width="1000"/>
 </p>
 
 编译选项在make.inc，正常是不用改动的，里面有几行可能根据实际情况修改如下，是本机器的编译器，必要时写出完整路径
