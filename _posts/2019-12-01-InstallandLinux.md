@@ -76,6 +76,32 @@ make pw pp
 
 这样编译完成后，如果没有出错 ，在bin下面会有可执行文件，大部分是以.x 为后缀，包括pw.x，pp.x等。
 
+## 支持的编译器和库
+
+```
+gcc 6.4.0
+gcc 7.3.0 + openmpi 1.10.7
+gcc 7.4.0 + openmpi 1.10.7
+intel 17
+intel 17 + impi
+intel 17.4 + impi + mkl + fftw 3.3.6
+intel 18
+intel 18 + openmpi 3.1.3
+intel 18.05.274 + impi
+pgi 18.5-0
+pgi 18.5-0 + mvapich 2.3b
+```
+
+List of known unsupported compilers and libraries
+
+```
+gcc 6.X.X or lower with openmp
+all the openmpi 2.X.X (memory leak)
+```
+
+https://gitlab.com/QEF/q-e/wikis/Quantum-Espresso-test-suite
+
+
 ## Linux系统
 
 查看各个命令的说明见（以ls为例）：
