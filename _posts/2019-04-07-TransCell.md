@@ -95,7 +95,7 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
 
-QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式。
+QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式，当然，每一种都是等价的，从任意一种可以推出其余的23种，转换工具见densityflow.com。
 
 <table style="border-collapse: collapse; border: none; border-spacing: 0px;">
     <tr>
