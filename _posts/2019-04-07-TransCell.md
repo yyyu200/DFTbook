@@ -75,7 +75,7 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 设置```ibrav```$\neq$0，这时会生成布拉伐格子相应的原胞。[表1](#tab1)列出了```ibrav```和```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```），注意```celldm(1)```定义了alat，单位只能是Bohr；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，而不是基矢长度，```celldm(4:6)```是角度的余弦值；对于```ibrav=5,-5,9,-9,12,-12```分别是三方、底心正交、简单单斜原胞的两种空间直角坐标系的取法；```ibrav```$\neq$0中的简单格子也可以用来设置超胞等结构（对于超胞不要再使用面心、体心等非简单格子）。[注1](#note1) [注2](#note2)
 
-在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，和celldm一样，唯一地确定了CELL，定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由表1给出。
+在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，和celldm一样，唯一地确定了CELL，定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由表1（基于qe-6.0，请对照具体使用的版本，可能有出入）给出。
 
 <span id = "tab1"><center><b>表1</b> 14种布拉伐格子的设置及对应的单元基矢量</center></span>
 
@@ -94,6 +94,77 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 第二种设置```ibrav=0```后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。`ibrav=0`一个不足之处是输出了点群操作但是没有输出点群名称（需设置`verbosity='high'`），可以将qe_release_6.4/ PW/src/summary.f90第608行```IF ( ibrav == 0 ) RETURN```加注释，重新编译。
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
+
+QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式。
+
+<table style="border-collapse: collapse; border: none; border-spacing: 0px;">
+    <tr>
+        <td rowspan="6" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            单元设置
+            <br>
+        </td>
+        <td rowspan="4" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            ibrav=0<wbr>
+        </td>
+        <td rowspan="2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            CELL_PARAMETERS( alat )<wbr>
+        </td>
+        <td style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            celldm(1)<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            A<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            CELL_PARAMETERS( bohr )<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            CELL_PARAMETERS( angstrom )<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            ibrav≠0<wbr>
+        </td>
+        <td colspan="2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            celldm(1:6)<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            A,B,C,cosAB,cosAC,cosBC<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="4" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            原子坐标设置<wbr>
+        </td>
+        <td colspan="3" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            ATOMIC_POSITIONS (alat)<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            ATOMIC_POSITIONS (bohr)<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            ATOMIC_POSITIONS (angstrom)<wbr>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; padding-right: 3pt; padding-left: 3pt;">
+            ATOMIC_POSITIONS (crystal)<wbr>
+        </td>
+    </tr>
+</table>
 
 注：自6.4.1版本，[官方](https://gitlab.com/QEF/q-e/wikis/Releases/Quantum-Espresso-6.4.1-Release-Notes)不推荐`celldm(1)`=1.88972613（任何<2的值）的做法，这里也修正为`celldm(1)`设置为晶格常数，或用`ibrav`$\neq$0。
 
