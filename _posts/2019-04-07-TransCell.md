@@ -168,7 +168,7 @@ QE结构设置的种类总结如下，除了通过空间群设置以外，单元
 
 注：自6.4.1版本，[官方](https://gitlab.com/QEF/q-e/wikis/Releases/Quantum-Espresso-6.4.1-Release-Notes)不推荐`celldm(1)`=1.88972613（任何<2的值）的做法，这里也修正为`celldm(1)`设置为晶格常数，或用`ibrav`$\neq$0。
 
-注2：关于alat，alat是qe内部定义的量，以Bohr为单位，具有晶格常数的意义，在pw.x的输出接近开头处有` lattice parameter (alat)  = x.xxxx  a.u.`。(1)当ibrav=0，且CELL_PARAMETER{bohr或angstrom}时，alat是CELL_PARAMETER第一行矢量的长度，此时不允许写celldm，否则会和CELL_PARAMETER冲突；(2)当ibrav=0，且CELL_PARAMETER{alat}时， alat=`celldm(1)`或`A`；(3)对于`ibrav`$\neq$0，alat=`celldm(1)`或`A`。对于输入，alat可能的影响是使用CELL_PARAMETER {alat}，这时cell参数是以alat为单位的。对于输出，pw.x有些输出量用到了alat为单位，这里就不再列举，根据情况判断。
+注2：关于alat，alat是qe内部定义的量，以Bohr为单位，具有晶格常数的意义，在pw.x的输出接近开头处有` lattice parameter (alat)  = x.xxxx  a.u.`。(1)当ibrav=0，且CELL_PARAMETER{bohr或angstrom}时，alat是CELL_PARAMETER第一行矢量的长度，此时不允许写celldm，否则会和CELL_PARAMETER冲突；(2)当ibrav=0，且CELL_PARAMETER{alat}时， alat=`celldm(1)`或`A`，这里`celldm(1)`或`A`取值有一定的任意性，这里建议取为第一个基矢量的长度，即具有晶格常数的意义；(3)对于`ibrav`$\neq$0，alat=`celldm(1)`或`A`。对于输入，alat可能的影响是使用CELL_PARAMETER {alat}，这时cell参数是以alat为单位的。对于输出，pw.x有些输出量用到了alat为单位，这里就不再列举，根据情况判断。
 
 ## 晶胞和原胞的相互转换
 
