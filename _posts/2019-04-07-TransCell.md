@@ -95,7 +95,7 @@ QE提供多种方式完成一件任务的设计风格，为具有各种习惯的
 
 最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
 
-QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式，当然，每一种都是等价的，从任意一种可以推出其余的23种，转换工具见densityflow.com。考虑到ibrav=0时存在直角坐标系选取的任意性，ibrav=0、CELL_PARAMETERS( alat )、celldm(1)设置存在alat选取的任意性，这种转换有可能是不可逆的。
+QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式，当然，每一种都是等价的，从任意一种可以推出其余的23种，转换工具见densityflow.com。考虑到ibrav=0时存在直角坐标系选取的任意性，ibrav=0、CELL_PARAMETERS( alat )、celldm(1)设置存在alat选取的任意性，这种转换有可能是不可逆的。对于一种ibrav设置，只是对应布拉伐格子类型的一种单元设置，比如体心立方就有ibrav=3和-3两种单元设置，所以通过CELL_PARAMETERS进行单元设置，在进行上述转换时，可能会转到不同的布拉伐格子，比如将体心立方的某种单元设置（不能归为3或-3）转为其他的ibrav类型。
 
 <table style="border-collapse: collapse; border: none; border-spacing: 0px;">
     <tr>
