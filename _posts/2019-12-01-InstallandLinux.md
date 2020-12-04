@@ -102,7 +102,7 @@ all the openmpi 2.X.X (memory leak)
 https://gitlab.com/QEF/q-e/wikis/Quantum-Espresso-test-suite
 
 
-## Linux系统
+## Linux操作系统
 
 查看各个命令的说明见（以ls为例）：
 ```
@@ -149,6 +149,10 @@ awk
 
 从linux拷贝到windows的文本文件打开时，推荐用[Notepad++](https://notepad-plus-plus.org/downloads/)，系统自带的"
 写字板"也可以，但是用"记事本"由于操作系统换行符不兼容，效果不好。
+
+参考书目：
+
+1. Linux命令行与shell脚本编程大全（第3版）作者: [美]布鲁姆，布雷斯纳汉, 人民邮电出版社，译者: 门佳 / 武海峰
 
 ## References
 
