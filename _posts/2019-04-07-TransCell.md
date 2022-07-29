@@ -87,7 +87,7 @@ $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{
 
 QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：
 
-(1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用简单格子的ibrav，写出celldm(1-6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。转为POSCAR格式可以用[densityflow.com](http://www.densityflow.com/p2v.html)的工具。
+(1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用简单格子的ibrav，写出celldm(1-6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。转为POSCAR格式可以用[densityflow.com](https://www.densityflow.com/p2v.html)的工具。
 
 (2)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以Bohr为单位（1 Bohr = 0.52917720859 Angstrom）。VESTA画图CELL_PARAMETERS已经是Å为单位。
 
@@ -292,7 +292,7 @@ $$，
 
 第二，要找到面内的最小周期性单元。先通过密勒指数的定义找到一个面内周期单元（可能非最小），以这个面内周期单位为基础，找最小单元通常用蛮力法从小到大寻找若干组，对于超胞中每一个原子，分别找到面内的最小的几个单元，在不同原子取法中，找到共同面内周期单元中最小的一个，即是要找的表面结构二维最小单元，这时找到的单元并不唯一，选取$a \le b$，夹角有90度选为90度，六方按照文献常见的取为120度，其余选为最接近90度的锐角。
 
-开源项目[SlabMaker](https://github.com/yyyu200/SlabMaker)，提供了建slab的功能，并且提供了在线[QE建模工具http://densityflow.com, http://117.51.145.214](http://117.51.145.214/)。其他的实现，包括用MS的建模模块进行；公开的其他来源的讨论包括文献[5]。
+开源项目[SlabMaker](https://github.com/yyyu200/SlabMaker)，提供了建slab的功能，并且提供了在线[QE建模工具https://densityflow.com](https://densityflow.com/)。其他的实现，包括用MS的建模模块进行；公开的其他来源的讨论包括文献[5]。
 
 第三，确定平板和真空的厚度。无论在平板内两个表面的距离，还是真空两边表面的距离都要足够大，以隔离两个表面的作用，模拟固体表面的性质，真空至少需要10Å到20Å。建议真空放在CELL的z方向的两端（如上图，垂直表面方向记为z）。有时，为了方便，Slab模型的CELL的基矢并不是正交的，但是考虑到周期性这种CELL与正交是等价的。有的文献描述平板厚度时，提到了**层**（layer）的概念，层并没有无争议的定义，需要依情况而定。有时，材料在垂直晶面方向有周期性，那么层可能是周期的个数；而另一些材料有若干层原子为一组，组与组之间距离较大可以明显划分开，这里的组就是层；还有的材料，在垂直晶面方向杂乱无章，一个原子或几个具有相同z坐标的原子就是一层。
 
