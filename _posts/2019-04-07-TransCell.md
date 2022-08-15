@@ -325,19 +325,15 @@ $\vec{c^{\*}} = { {\vec{a} \times \vec{b}} \over {V} }, $
 
 可以证明，倒格子矩阵是单元基矢量（写成列矢量）矩阵的逆矩阵。
 
-$$
-\quad \begin{pmatrix}
+$$ \quad \begin{pmatrix}
 a^{*}_{1} & a^{*}_{2} & a^{*}_{3} \\
 b^{*}_{1} & b^{*}_{2} & b^{*}_{3} \\
-c^{*}_{1} & c^{*}_{2} & c^{*}_{3} \\
-\end{pmatrix}\quad
- \quad \begin{pmatrix}
+c^{*}_{1} & c^{*}_{2} & c^{*}_{3} 
+\end{pmatrix} \quad \quad \begin{pmatrix}
 a_{1} & b_{1} & c_{1} \\
 a_{2} & b_{2} & c_{2} \\
-a_{3} & b_{3} & c_{3} \\
-\end{pmatrix}\quad 
-=I
-$$
+a_{3} & b_{3} & c_{3} 
+\end{pmatrix}\quad  =I $$
 
 
 [还有一种倒格子的“物理学定义”，也是QE中使用的定义，等号右边多一个2$\pi$，为了后面的叙述方便，这里不采用这种定义，
@@ -351,15 +347,15 @@ $\vec{c^{\*}} = 2 \pi { {\vec{a} \times \vec{b}} \over {V} }。]$
 
 $$\quad
 \begin{pmatrix}
-z_{1} \\z_{2} \\z_{3}
+z_{1} \\ z_{2} \\ z_{3}
 \end{pmatrix}
 \quad  = \quad \begin{pmatrix}
 a_{1} & b_{1} & c_{1} \\
 a_{2} & b_{2} & c_{2} \\
-a_{3} & b_{3} & c_{3} \\
+a_{3} & b_{3} & c_{3} 
 \end{pmatrix}\quad 
 \begin{pmatrix}
-x_{1} \\x_{2} \\x_{3}
+x_{1} \\ x_{2} \\ x_{3}
 \end{pmatrix}
 $$
 
@@ -367,15 +363,15 @@ $$
 
 $$\quad
 \begin{pmatrix}
-x_{1} \\x_{2} \\x_{3}
+x_{1} \\ x_{2} \\ x_{3}
 \end{pmatrix}
 \quad  = \quad \begin{pmatrix}
 a^{*}_{1} & a^{*}_{2} & a^{*}_{3} \\
 b^{*}_{1} & b^{*}_{2} & b^{*}_{3} \\
-c^{*}_{1} & c^{*}_{2} & c^{*}_{3} \\
+c^{*}_{1} & c^{*}_{2} & c^{*}_{3} 
 \end{pmatrix}\quad
 \begin{pmatrix}
-z_{1} \\z_{2} \\z_{3}
+z_{1} \\ z_{2} \\ z_{3}
 \end{pmatrix}
 $$
 
