@@ -31,7 +31,7 @@ trans: cube
 
 格点连接成的平行六面体，称为**单元**(cell)，单元具有三维周期性，是平面波程序计算的对象。
 
-有时计算需要选取一个比最小单元更大的单元，习惯上称为**超胞**。
+有时计算需要选取一个比最小单元更大的单元，习惯上称为**超胞**（supercell）。
 
 **群**，在集合上封闭的运算，运算满足结合律，存在单位元，存在逆元，定义为群。
 
@@ -41,7 +41,7 @@ trans: cube
 
 如果只允许转动（含空间反演、镜像），称为**点群**。3维空间中的晶体点群有32种。
 
-如果允许转动和平移的复合操作，称为**空间群**。3维空间中的晶体学空间群有230种。指定了空间群的类型，我们只需要知道在空间群操作下不重复的原子位置，就可以确定晶体结构，这些不重复的位置称为Wyckoff位置，QE输入有space_group和ATOMIC_POSITIONS { crystal_sg }来专门设置。
+如果允许转动和平移的复合操作，称为**空间群**。3维空间中的晶体学空间群有230种。指定了空间群的类型，我们只需要知道在空间群操作下不重复的原子位置，就可以确定晶体结构，这些不重复的位置称为Wyckoff位置，QE输入有```space_group```和```ATOMIC_POSITIONS { crystal_sg }```来专门设置。
 
 保持平移对称性的最小单元是**原胞**（primitive cell）。
 
@@ -61,9 +61,7 @@ trans: cube
 
 按照晶体具有的点群分类，分为7种**晶系**（crystal system），即：triclinic, monoclinic, orthorhombic, tetragonal, trigonal, hexagonal和cubic。
 
-14种布拉伐格子，分为7种**格点系**（lattice systems），即：triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal和cubic。
-
-晶系和格点系的区别见[注4](#note4)。
+14种布拉伐格子，分为7种**格点系**（lattice systems），即：triclinic, monoclinic, orthorhombic, tetragonal, rhombohedral, hexagonal和cubic [注4](#note4)。
 
 ## 2. QE中的结构定义
 
@@ -73,39 +71,37 @@ QE输入文件的总体结构如下图，输入文件的前半部分满足Fortra
     <img src="../../../../../img/structure_input.png" width="503" />
 </p>
 
+### 2.1 单元的定义
+
 QE计算的结构总是具有三维空间周期性的，需要定义周期性的**单元**（cell）作为计算的对象，这里的单元可以是原胞、晶胞或超胞。在QE内部用三个矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$定义单元。单元的定义本身不依赖于**空间直角坐标系**（**笛卡尔坐标系**）的选择，只需要定义三个基矢量的长度和三个夹角，但是为了计算，需要确定一个空间直角坐标系，以写出各个矢量的直角坐标，
 
 $$\vec{v_{1}}=(v_{11},v_{12},v_{13}),\vec{v_{2}}=(v_{21},v_{22},v_{23}),\vec{v_{3}}=(v_{31},v_{32},v_{33})$$，
 
 这里，空间直角坐标系的选取，对于```ibrav```$\neq$0是在QE程序内部进行的，用户不需要设置；对于```ibrav=0```是用户通过写出```CELL_PARAMETERS```而确定的。
 
-设置```ibrav=0```，这时需要在输入文件中写入```CELL_PARAMETERS```，即单元的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$的直角坐标，这里空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，比如：将原点放在某个原子上，将x轴定义为布拉伐格子的某个基矢方向。这里坐标系的不同选择，对应的原子坐标会有一个单位正交矩阵所定义的变换，但是建议是右手系（虽然qe中没有强制要求右手系）。坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由```celldm(1)```或```A```定义的，具有晶格常数的意义[注1](#note1)。设置```ibrav=0```并写出```CELL_PARAMETERS```这种方法适合用来设置超胞、slab模型等，也可以用来建原胞，是一种通用性较好的方法，并且与其他结构文件（cif，VESTA，POSCAR等）格式转换较为方便，也更方便进行后续计算。
+(方法1) 设置```ibrav=0```，这时需要在输入文件中写入```CELL_PARAMETERS```，即单元的基矢量$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$的直角坐标，这里空间直角坐标系的选法有一定的任意性，用户可以根据习惯选择，比如：将原点放在某个原子上，将x轴定义为布拉伐格子的某个基矢方向。这里坐标系的不同选择，对应的原子坐标会有一个单位正交矩阵所定义的变换，但是建议是右手系（虽然qe中没有强制要求右手系）。坐标的单位有三种选择：alat，bohr，angstrom，其中，alat是由```celldm(1)```或```A```定义的，具有晶格常数的意义[注1](#note1)；bohr和angstrom分别是以bohr和埃为单位，此时不要设置```celldm(1)```或```A```，alat是$\vec{v_{1}}$的长度。
 
-设置```ibrav```$\neq$0，这时会生成布拉伐格子相应的原胞作为计算单元。[表1](#tab1)列出了```ibrav```和```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```）。此时，```celldm(1)```或```A```是晶胞的第一基矢量的长度（注意区分原胞和晶胞），即alat[注2](#note2)，单位是bohr（1 bohr = 0.52917720859 Angstrom）；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，是晶胞的基矢量的长度比（注意区分原胞和晶胞）；```celldm(4:6)```是角度的余弦值，角度通常是相应晶胞基矢量夹角，但ibrav=5是例外；对于```ibrav=-3,-5,-9,91,-12,-13```，与相应的1～14设置相比，分别代表不同的空间直角坐标系的取法，或不同的单元基矢量取法；```ibrav```$\neq$0中的简单格子（ibrav=1,4,6,8,12,14）也可以用来设置超胞等结构（对于超胞不建议再使用ibrav=2,3,7,9,10,11,13，即面心、体心、底心等非简单格子以及ibrav=5菱方格子）。
+设置```ibrav=0```并写出```CELL_PARAMETERS```这种方法适合用来设置超胞、slab模型等，也可以用来建原胞，是一种通用性较好的方法，并且与其他结构文件（cif，VESTA，POSCAR等）格式转换较为方便，也更方便进行后续计算。
 
-需要说明的是，从一个给定直角坐标系的单元出发，总可以写出这个单元的```CELL_PARAMETERS```，即```ibrav```=0格式，但是，这个单元的基矢量坐标可能需要通过坐标系的旋转、坐标轴的反演和置换才能满足```ibrav```$\neq$0相应的程序内部的CELL_PARAMETERS形式，即使这样某些单元也是无法写成ibrav=14以外的$\neq$0的形式的，例如将fcc的原胞基矢量中的一个反向，得到的基矢量夹角与ibrav=2的基矢量间夹角不同，不能通过坐标系变换成ibrav=2的单元。好在这种情况总是可以避免的，根据单元的平移对称性，可以将这个单元转换成符合ibrav=1～14的单元形式，见3.1节所述的单元之间的变换。
+(方法2) 设置```ibrav```$\neq$0，这时会生成布拉伐格子相应的原胞作为计算单元。[表1](#tab1)列出了```ibrav```和```celldm```设置以及对应的$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$原胞基矢量（相当于内部生成的```CELL_PARAMETERS```）。此时，```celldm(1)```或```A```是晶胞的第一基矢量的长度（注意区分原胞和晶胞），即alat[注2](#note2)，单位是bohr（1 bohr = 0.52917720859 Angstrom）；```celldm(2)```和```celldm(3)```定义的是比例b/a和c/a，是晶胞的基矢量的长度比（注意区分原胞和晶胞）；```celldm(4:6)```是角度的余弦值，角度通常是相应晶胞基矢量夹角，但ibrav=5是例外；对于```ibrav=-3,-5,-9,91,-12,-13```，与相应的1～14设置相比，分别代表不同的空间直角坐标系的取法，或不同的单元基矢量取法；```ibrav```$\neq$0中的简单格子（ibrav=1,4,6,8,12,14）也可以用来设置超胞等结构（对于超胞不建议再使用ibrav=2,3,7,9,10,11,13，即面心、体心、底心等非简单格子以及ibrav=5菱方格子）。
 
-在QE中还可以直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，单位是Angstrom，和celldm一样，唯一地确定了单元，定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由表1给出（基于qe-6.0，请对照具体使用的版本，可能有出入）。
+需要说明的是，对于任意的单元，总可以建立直角坐标系，写出这个单元的```CELL_PARAMETERS```，即```ibrav```=0格式，但是，这个单元的基矢量坐标可能需要通过坐标系的旋转、坐标轴的反演和置换才能满足```ibrav```$\neq$0相应的程序内部的CELL_PARAMETERS形式，即使这样某些单元也是无法写成ibrav=14以外的$\neq$0的形式的，例如将fcc的原胞基矢量中的一个反向，得到的基矢量夹角与ibrav=2的基矢量间夹角不同，不能通过坐标系变换成ibrav=2的单元。好在这种情况总是可以避免的，根据单元的平移对称性，可以将这个单元转换成符合ibrav=1～14的单元形式，见3.1节所述的单元之间的变换。
 
-<span id = "tab1"><center><b>表1</b> 14种布拉伐格子的设置及对应的单元基矢量</center></span>
+(方法3) 直接给出晶格的基矢长度和夹角```A, B, C, cosAB, cosAC, cosBC```，此时```ibrav```$\neq$0，单位是Angstrom，和celldm一样，唯一地确定了单元，定义了$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$，这时的空间直角坐标系是QE内部定义的，也由表1给出。当然，设置```ibrav=14```，并写出全部的六个参数也是一种通用的做法。
+
+<span id = "tab1"><center><b>表1</b> 14种布拉伐格子的设置及对应的单元基矢量（QE6.0）</center></span>
 
 <p align="center">
     <img src="../../../../../img/ibrav.png" width="830" />
 </p>
 
+### 2.2 原子坐标的定义
+
 在定义了单元之后，用```ATOMIC_POSITIONS```定义单元中原子的坐标。```ATOMIC_POSITIONS```的单位有以下可供选择\{ alat \| bohr \| angstrom \| crystal \| crystal_sg \}，其中，crystal是指以$\vec{v_{1}},\vec{v_{2}},\vec{v_{3}}$为基矢量的分数坐标，$\vec{X}=(x_{1},x_{2},x_{3})^{T}=x_{1}\vec{v_{1}}+x_{2}\vec{v_{2}}+x_{3}\vec{v_{3}}$。如果选择\{ alat \| bohr \| angstrom\}，则原子坐标是空间直角坐标，由于结构的周期性，这里的空间直角坐标系的选择是任意的，同时与单元的空间直角坐标系也是独立选取的，但是习惯上还是与单元的空间直角坐标系保持一致，坐标值在CELL_PARAMTERS所定义的平行六面体内部。\{crystal_sg\}是在指定了空间群之后，定义对称性不等价的原子位置，与```space_group, uniqueb, origin_choice, rhombohedral```配套使用。
 
-QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：
+### 2.3 小结
 
-(1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用相应简单格子的ibrav，写出celldm(1:6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。转为POSCAR格式可以用[QEtk](https://www.densityflow.com)的P2P工具。
-
-(2)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以bohr为单位。用VESTA画图时，此时CELL_PARAMETERS已经是Å为单位，转格式也比较方便。
-
-第二种设置```ibrav=0```后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。`ibrav=0`一个不足之处是输出了点群操作但是没有输出点群名称（需设置`verbosity='high'`），可以将qe_release_6.4/PW/src/summary.f90第608行```IF ( ibrav == 0 ) RETURN```加注释，重新编译。
-
-最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS或者[QEtk](https://www.densityflow.com)等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
-
-QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式，当然，每一种都是等价的，从任意一种可以推出其余的23种，转换工具见[QEtk](https://www.densityflow.com)的pw.x输入格式互换工具。考虑到ibrav=0时存在直角坐标系选取的任意性，ibrav=0、CELL_PARAMETERS( alat )、celldm(1)设置存在alat选取的任意性，这种转换有可能是不可逆的。对于一种ibrav设置，只是对应布拉伐格子类型的一种单元设置，比如体心立方就有ibrav=3和-3两种单元设置，所以通过CELL_PARAMETERS进行单元设置，在进行上述转换时，可能会转到不同的布拉伐格子，比如将体心立方的某种单元设置（不能归为3或-3）转为其他的ibrav类型。
+QE结构设置的种类总结如下，除了通过空间群设置以外，单元有6种设置方法，原子坐标有4种设置方法，一共有24种组合方式，当然，每一种都是等价的，从任意一种可以推出其余的23种，转换工具见[QEtk](https://www.densityflow.com)的pw.x输入格式互换工具。考虑到ibrav=0时存在直角坐标系选取的任意性，ibrav=0、CELL_PARAMETERS( alat )、celldm(1)设置存在alat选取的任意性，这种转换有可能是不可逆的。如2.1节所述的方法2，对于某些单元，需要做单元的变换才能归结为对应布拉伐格子，比如体心立方就有ibrav=3和-3两种单元设置，所以通过CELL_PARAMETERS进行单元设置，在进行上述转换时，可能会转到不同的布拉伐格子，比如将体心立方的某种单元设置（不能归为3或-3）转为其他的ibrav类型。
 
 <table style="border-collapse: collapse; border: none; border-spacing: 0px;">
     <tr>
@@ -176,11 +172,21 @@ QE结构设置的种类总结如下，除了通过空间群设置以外，单元
     </tr>
 </table>
 
+QE提供多种方式完成一件任务的设计风格，为具有各种习惯的用户提供了得心应手的工具，但是对于初学者来说，难免有一种眼花缭乱的感觉，这里推荐的方法：
+
+(1)设置```ibrav```$\neq$0，对于原胞用相应的ibrav类型，对于超胞用相应简单格子的ibrav，写出celldm(1:6)，这时不写CELL_PARAMETERS，输出会内部生成CELL_PARAMETERS以alat（celldm(1)）为单位。VESTA画图时用输出里的CELL_PARAMETERS，需要转换单位。转为POSCAR格式可以用[QEtk](https://www.densityflow.com)的P2P工具。
+
+(2)设置```ibrav=0```，写出以Angstrom为单位的```CELL_PARAMETERS (angstrom)```，对于原子坐标建议使用分数坐标，即写成```ATOMIC_POSITIONS (crystal)```，不设置```celldm(1)```，这时，alat和celldm(1)由程序内部设置成v1的长度，以bohr为单位。用VESTA画图时，此时CELL_PARAMETERS已经是Å为单位，转格式也比较方便。
+
+第二种设置```ibrav=0```后续处理时要注意pp.x输出电荷等文件是以alat为单位输出CELL_PARAMETERS的，而与输入文件的单位不一样。vc-relax计算的最终结构是以ibrav=0搭配CELL_PARAMETERS (angstrom)的格式输出的。要注意基矢和原子坐标的有效数字位数要写得多一些，以找到正确的对称性。`ibrav=0`一个不足之处是输出了点群操作但是没有输出点群名称（需设置`verbosity='high'`），可以将qe_release_6.4/PW/src/summary.f90第608行```IF ( ibrav == 0 ) RETURN```加注释，重新编译。
+
+最后，强烈建议做好结构之后，用可视化的软件如VESTA、Xcrysden、MS或者[QEtk](https://www.densityflow.com)等画出晶体结构，检查一下原子间距、键角等是否正确，这些软件并不都支持QE的输入格式，可能需要转换格式，这时用ibrav=0也比较有利。用VESTA画图，转为POSCAR格式，输入文件拷贝CELL_PARAMETERS后面的三行作为POSCAR的第3-5行（POSCAR第二行设置为1.0），拷贝ATOMIC_POSITIONS (crystal)后面的坐标后三列，作为POSCAR里的Direct坐标，QE输出转POSCAR同上。
+
 ## 3. 单元变换
 
 ### 3.1 一般的单元变换
 
-原胞是保持平移对称性的最小单元，所以，在计算能带、声子色散时，研究对象是原胞（声子的有限位移方法需要超胞，但是，这时的超胞是一个辅助系统，色散仍然是针对原胞画的）。用比原胞更大的单元计算能带会造成band folding现象，即能带折叠，相当于布里渊区变小了，布里渊区的形状也可能发生了变化，从超胞到原胞的能带可以通过[band unfolding](https://www.ifm.liu.se/theomod/compphys/band-unfolding)还原到原胞的能带。
+原胞是保持平移对称性的最小单元，所以，在计算能带、声子色散时，研究对象是原胞（声子的有限位移方法需要超胞，但是，这时的超胞是一个辅助系统，声子色散仍然是基于原胞定义的）。用比原胞更大的单元计算能带会造成band folding现象，即能带折叠，相当于布里渊区变小了，布里渊区的形状也可能发生了变化，从超胞到原胞的能带可以通过能带反折叠(band unfolding)还原到原胞的能带。
 
 文献通常按照以下约定：晶胞是定义晶面、晶向、超胞的参照，而不是原胞或其他单元。
 
@@ -339,7 +345,7 @@ a_{3} & b_{3} & c_{3}
 [还有一种倒格子的“物理学定义”，也是QE中使用的定义，等号右边多一个2$\pi$，为了后面的叙述方便，这里不采用这种定义，
 $\vec{a^{\*}} = 2 \pi { {\vec{b} \times \vec{c}} \over {V} }, $
 $\vec{b^{\*}} = 2 \pi { {\vec{c} \times \vec{a}} \over {V} }, $
-$\vec{c^{\*}} = 2 \pi { {\vec{a} \times \vec{b}} \over {V} }。]$
+$\vec{c^{\*}} = 2 \pi { {\vec{a} \times \vec{b}} \over {V} }$]。
 
 可以将3.1节的单元变换矩阵用在直角坐标和分数坐标的转换，将直角坐标看成单位正交基矢对应的分数坐标。这时，单元基矢（列矢量）组成的矩阵即为单位正交基矢到单元的变换矩阵，而逆矩阵即为倒格子基矢量组成的矩阵（行矢量）。
 
