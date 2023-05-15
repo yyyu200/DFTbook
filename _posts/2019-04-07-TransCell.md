@@ -505,7 +505,15 @@ slab.print_poscar("./slab.vasp")
 
 <span id = "note1">1.</span>自6.4.1版本，[官方](https://gitlab.com/QEF/q-e/wikis/Releases/Quantum-Espresso-6.4.1-Release-Notes)不推荐`celldm(1)`=1.88972613（任何<2的值），即将celldm(1)设置为单位转换系数的做法，这里也修正为`celldm(1)`设置为晶格常数，或用`ibrav`$\neq$0。
 
-<span id = "note2">2.</span>关于alat，alat是qe内部定义的量，以bohr为单位，具有晶格常数的意义，在pw.x的输出接近开头处有` lattice parameter (alat)  = x.xxxx  a.u.`。(1)当ibrav=0，且CELL_PARAMETER{bohr或angstrom}时，alat是CELL_PARAMETER第一行矢量的长度，此时不允许写celldm，否则会和CELL_PARAMETER冲突；(2)当ibrav=0，且CELL_PARAMETER{alat}时， alat=`celldm(1)`或`A`，这里`celldm(1)`或`A`取值有一定的任意性，这里建议取为第一个基矢量的长度，即具有晶格常数的意义；(3)对于`ibrav`$\neq$0，alat=`celldm(1)`或`A`。对于输入，alat可能的影响是使用CELL_PARAMETER {alat}，这时cell参数是以alat为单位的。对于输出，pw.x有些输出量用到了alat为单位，这里就不再列举，根据情况判断。
+<span id = "note2">2.</span>关于alat，alat是qe内部定义的量，以bohr为单位，具有晶格常数的意义（这里晶格常数特指晶胞的第一个基矢量长度），在pw.x的输出接近开头处有` lattice parameter (alat)  = x.xxxx  a.u.`。虽然没有硬性规定，但是，建议晶胞的三个基矢量按照从小到大的顺序排列，即a&le;b&le;c。
+
+(1)当ibrav=0，且设置CELL_PARAMETER{bohr或angstrom}时，alat是CELL_PARAMETER第一行矢量的长度，此时不允许写celldm，否则会和CELL_PARAMETER冲突；
+
+(2)当ibrav=0，且设置CELL_PARAMETER{alat}时， alat=`celldm(1)`或`A`/0.529（`celldm(1)`和`A`分别是以bohr和Angstrom为单位），这里`celldm(1)`或`A`取值有一定的任意性，但是必须要写，这里建议取为晶胞第一个基矢量的长度，即具有晶胞晶格常数的意义；
+
+(3)对于`ibrav`$\neq$0，alat=`celldm(1)`或`A`/0.529。
+
+对于输入，alat可能的影响是使用CELL_PARAMETER {alat}，这时cell参数是以alat为单位的。对于输出，pw.x有些输出量用到了alat为单位，这里就不再列举，根据情况判断。
 
 <span id = "note3">3.</span> 注意晶胞和原胞的区别，对于非简单格子ibrav$\neq0$适合于设置原胞（对于简单格子ibrav$\neq$0当然也是设置了原胞），布拉伐格子中的7个简单格子本身就是原胞，而且，除了菱方外的6个简单格子，不仅是原胞，同时也是晶胞，菱方的布拉伐格子是原胞但不是晶胞，菱方的晶胞是六方的简单格子，体积是原胞的3倍，而底心、面心、体心的7个布拉伐格子本身是晶胞，存在体积更小的原胞。
 
